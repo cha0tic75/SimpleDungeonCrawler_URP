@@ -6,7 +6,7 @@
 
 using UnityEngine;
 
-namespace Project.Core
+namespace Project
 {
     public abstract class TransformMonoBehaviour : MonoBehaviour
 	{

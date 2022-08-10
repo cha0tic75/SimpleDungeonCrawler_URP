@@ -4,16 +4,21 @@
 // Written by Tim McCune <tim.mccune1975@gmail.com>
 // ######################################################################
 
+using System;
 using UnityEngine;
 
 namespace Project.Player
 {
     public class PlayerController : BaseEntity
 	{
+		#region Delegate(s):
+		public event Action OnItemInteractionEvent;
+		#endregion
+
 		#region Inspector Assigned Field(s):
 		[SerializeField] private float m_moveSpeed = 4f;
 		[SerializeField] private float m_sprintSpeedModifier = 1.4f;
-		[SerializeField] private PlayerHoldPoint m_playerHoldPoint;
+		[SerializeField] private PlayerInventory m_playerHoldPoint;
 		[SerializeField] private float m_offset = 1f;
 		#endregion
 
@@ -33,6 +38,13 @@ namespace Project.Player
 			m_movementInputVector.y = Input.GetAxisRaw("Vertical");
 
 			m_isSprinting = Input.GetKey(KeyCode.LeftShift);
+
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				OnItemInteractionEvent?.Invoke();
+				// m_playerHoldPoint.Interaction();
+			}
+
 		}
 
 		private void FixedUpdate()
@@ -40,7 +52,7 @@ namespace Project.Player
 			Vector3 movementVector = new Vector3(m_movementInputVector.x, m_movementInputVector.y, 0f).normalized;
 			Transform.position += movementVector * CurrentMoveSpeed * Time.deltaTime;
 
-			m_playerHoldPoint.Transform.position = Transform.position + movementVector * m_offset;
+			// m_playerHoldPoint.Transform.position = Transform.position + movementVector * m_offset;
 		}
 		#endregion
 	}

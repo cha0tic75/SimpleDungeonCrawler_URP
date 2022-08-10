@@ -1,0 +1,7 @@
+TODO:
+
+08/10/2022:
+    - Now that the player has movement and can pick up "items", Create an exit system that when player
+      enters a trigger volume for an exit, and they interact, it will check the player inventory 
+      for a specific key and if they are holding it, open the exit and destroy the key. otherwise
+      nothing happens
