@@ -18,8 +18,6 @@ namespace Project.Player
 		#region Inspector Assigned Field(s):
 		[SerializeField] private float m_moveSpeed = 4f;
 		[SerializeField] private float m_sprintSpeedModifier = 1.4f;
-		[SerializeField] private PlayerInventory m_playerHoldPoint;
-		[SerializeField] private float m_offset = 1f;
 		#endregion
 
 		#region Internal State Field(s):
@@ -39,20 +37,14 @@ namespace Project.Player
 
 			m_isSprinting = Input.GetKey(KeyCode.LeftShift);
 
-			if (Input.GetKeyDown(KeyCode.Space))
-			{
-				OnItemInteractionEvent?.Invoke();
-				// m_playerHoldPoint.Interaction();
-			}
-
+			if (Input.GetKeyDown(KeyCode.Space)) { OnItemInteractionEvent?.Invoke(); }
 		}
 
 		private void FixedUpdate()
 		{
+			// TODO: Use the Rigidbody to move instead of the transform
 			Vector3 movementVector = new Vector3(m_movementInputVector.x, m_movementInputVector.y, 0f).normalized;
 			Transform.position += movementVector * CurrentMoveSpeed * Time.deltaTime;
-
-			// m_playerHoldPoint.Transform.position = Transform.position + movementVector * m_offset;
 		}
 		#endregion
 	}
