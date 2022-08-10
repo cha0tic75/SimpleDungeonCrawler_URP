@@ -4,28 +4,22 @@
 // Written by Tim McCune <tim.mccune1975@gmail.com>
 // ######################################################################
 
-using Project.Core;
 using UnityEngine;
 
 namespace Project.Player
 {
-	[System.Serializable]
-	public class PlayerHoldPointData
-	{
-		[field: SerializeField] public PlayerHoldPoint PlayerHoldPoint { get; private set; }
-		[field: SerializeField] public float Offset { get; private set; } = 0.25f;
-	}
     public class PlayerController : BaseEntity
 	{
 		#region Inspector Assigned Field(s):
-		[SerializeField] private float m_moveSpeed = 3f;
-		[SerializeField] private float m_sprintSpeedModifier = 1.65f;
-		[SerializeField, ReadOnly] private bool m_isSprinting = false;
-		[SerializeField] private PlayerHoldPointData m_playerHoldPointData;
+		[SerializeField] private float m_moveSpeed = 4f;
+		[SerializeField] private float m_sprintSpeedModifier = 1.4f;
+		[SerializeField] private PlayerHoldPoint m_playerHoldPoint;
+		[SerializeField] private float m_offset = 1f;
 		#endregion
 
 		#region Internal State Field(s):
 		private Vector2 m_movementInputVector = Vector2.zero;
+		[SerializeField] private bool m_isSprinting = false;
         #endregion
 
         #region Properties:
@@ -46,7 +40,7 @@ namespace Project.Player
 			Vector3 movementVector = new Vector3(m_movementInputVector.x, m_movementInputVector.y, 0f).normalized;
 			Transform.position += movementVector * CurrentMoveSpeed * Time.deltaTime;
 
-			m_playerHoldPointData.PlayerHoldPoint.Transform.position = Transform.position + movementVector * m_playerHoldPointData.Offset;
+			m_playerHoldPoint.Transform.position = Transform.position + movementVector * m_offset;
 		}
 		#endregion
 	}

@@ -1,23 +1,26 @@
 // ######################################################################
-// TransformMonoBehaviour - Script description goes here
+// Item - Script description goes here
 //
 // Written by Tim McCune <tim.mccune1975@gmail.com>
 // ######################################################################
 
 using UnityEngine;
 
-namespace Project.Core
+namespace Project.Items
 {
-	public abstract class TransformMonoBehaviour : MonoBehaviour
+	[RequireComponent(typeof(Collider2D))]
+	public class Item : BaseEntity
 	{
-	
-		#region Properties:
-		public Transform Transform { get; private set;}
+		#region Internal State Field(s):
+		
 		#endregion
 
 		#region MonoBehaviour Callback Method(s):
-		protected virtual void Awake() => Transform = transform;
+
 		#endregion
 
+		#region Public API:
+
+		#endregion
 	}
 }
