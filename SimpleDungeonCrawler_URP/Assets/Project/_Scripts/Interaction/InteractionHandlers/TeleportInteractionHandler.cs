@@ -13,6 +13,11 @@ namespace Project.Interaction
 	{
         #region Inspector Assigned Field(s):
         [SerializeField] private Vector3 m_teleportOffset;
+        [SerializeField] private SpriteRenderer m_spriteRenderer;
+        [SerializeField] private Color m_color = new Color(1f, 1f, 1f, 1f);
+#if UNITY_EDITOR
+        [SerializeField] private bool m_showGizmos;
+#endif
         #endregion
 
         #region Properties:
@@ -20,8 +25,14 @@ namespace Project.Interaction
         #endregion
 
 #if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (m_spriteRenderer == null) { return; }
+            m_spriteRenderer.color = m_color;
+        }
         private void OnDrawGizmosSelected() 
         {
+            if (!m_showGizmos) { return; }
             if (Transform == null) { Transform = transform; }
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(TeleportLocation, 0.2f);

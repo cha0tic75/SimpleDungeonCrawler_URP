@@ -8,6 +8,6 @@ namespace Project.Damage
 {
     public interface IDamagable
 	{
-		void TakeDamage(int _damageAmount);
+		void TakeDamage(float _damageAmount);
 	}
 }

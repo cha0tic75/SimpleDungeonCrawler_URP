@@ -25,6 +25,14 @@ namespace Project
 				yield return null;
 			}
 		}
+
+		public static void StopCoroutineIfRunning(ref Coroutine _coroutine, MonoBehaviour _monoBehaviour)
+		{
+			if (_coroutine == null || _monoBehaviour == null) { return; }
+			
+			_monoBehaviour.StopCoroutine(_coroutine);
+			_coroutine = null;
+		}
 		#endregion
 	}
 }

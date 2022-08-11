@@ -16,6 +16,9 @@ namespace Project.Player
 		#region Inspector Assigned Field(s):
 		[SerializeField] private float m_interactRadius;
         [SerializeField] private LayerMask m_interactLayerMask;
+#if UNITY_EDITOR
+		[SerializeField] private bool m_showGizmos;
+#endif
 		#endregion
 
 		#region Internal State Field(s):
@@ -31,6 +34,7 @@ namespace Project.Player
 #if UNITY_EDITOR
 		private void OnDrawGizmos() 
 		{
+			if (!m_showGizmos) { return; }
 			Gizmos.color = Color.red;
 			Gizmos.DrawWireSphere(transform.position, m_interactRadius);	
 		}

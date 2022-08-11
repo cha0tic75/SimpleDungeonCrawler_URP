@@ -2,4 +2,22 @@ TODO:
 
 08/10/2022:
     - Extended the map, Created more keys, Added animation for open door, Created a TeleportInteractable
-    - Create a trigger that will toggle GeneralWall and DamageWall.
+    - Refactored DamageDealer to be base class then CollisionDamageDealer and TriggerDamageDealer derive 
+      from it.  Then concrete implementations WallCollisionDamageDealer and TrapTriggerDamageDealer.
+    - I plugged in some UI for health and stamina.  Health seems to be working good.  
+      I need to plug in the stamina one.
+
+     Health:  This should regenerate if player isn't moving or being damaged.
+
+     Stamina: This should have a value like health that is consumed when the player is sprinting.
+              The PlayerController should not allow player to move faster if out of stamina.
+              Stamina should regen when player isn't moving.
+
+    - flesh out the rest of the level geometry and place the appropriate keys.
+    - Create some concept of enemy. This can be as simple as a square that moves up and down 
+      at regular intervals.
+
+    - Refactor the Damage dealer!  There should be TriggerVolume and CollisionVolume components
+      Then TriggerVolumeHandler and CollisionVolumeHandler  This is where the damage should come from
+      This will enable me to use triggerVolume to do other things like start enemies bouncing around 
+      or something.

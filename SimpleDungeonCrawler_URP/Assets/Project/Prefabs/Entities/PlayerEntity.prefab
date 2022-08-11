@@ -148,8 +148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed8442c4025d354d9b4a17cd724e690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <StartHealth>k__BackingField: 10
-  <CurrentHealth>k__BackingField: 0
+  <StartValue>k__BackingField: 10
+  <ValueRange>k__BackingField:
+    <Min>k__BackingField: 0
+    <Max>k__BackingField: 10
+  <CurrentValue>k__BackingField: 0
 --- !u!114 &3623137380688457811
 MonoBehaviour:
   m_ObjectHideFlags: 0

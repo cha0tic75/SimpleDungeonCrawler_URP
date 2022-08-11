@@ -11,12 +11,17 @@ namespace Project
 	public class DamageWallStateManager : MonoBehaviour
 	{
 		#region Inspector Assigned Field(s):
+		[SerializeField] private bool m_startState = false;
 		[SerializeField] private GameObject m_damageWall;
 		[SerializeField] private GameObject m_generalWall;		
 		#endregion
 
 		#region Internal State Field(s):
 		private bool m_currentDamageState = false;
+		#endregion
+
+		#region MonoBehaviour Callback Method(s):
+		private void Start() => ChangeStateTo(m_startState);
 		#endregion
 		
 		#region Public API:

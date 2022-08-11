@@ -6,8 +6,9 @@
 
 namespace Project.Damage
 {
-    public interface IDamageDealer
-	{
-		void DealDamage(IDamagable _damagable);
-	}
+    // public interface IDamageDealer
+	// {
+	// 	float DamageFrequency { get; }
+	// 	void DealDamage(IDamagable _damagable);
+	// }
 }
