@@ -23,7 +23,6 @@ namespace Project.Interaction
 		#region Public API:
 		public override void HandleInteraction(GameObject _interactor)
 		{
-			Debug.Log("ItemInteractionHandler: HandleInteraction");
 			if (_interactor.TryGetComponent<PlayerInventory>(out var inventory))
 			{
 				inventory.AddItem(this);

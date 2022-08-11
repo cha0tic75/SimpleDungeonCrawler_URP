@@ -43,18 +43,18 @@ namespace Project.Player
         {
  			Collider2D interactCollider = Physics2D.OverlapCircle(Transform.position, m_interactRadius, m_interactLayerMask);
 
-			if (interactCollider == null) { return; }
-            
-            if (interactCollider.TryGetComponent<Interactable>(out var interactable))
-            {
-				if (interactable.enabled == true)
+			if (interactCollider != null)
+			{
+				if (interactCollider.TryGetComponent<Interactable>(out var interactable))
 				{
-					interactable.Interact(gameObject);
-					return;
-				}
-            }
-			
-			Debug.Log("No interactable found.  Lets assume you want to drop existing item from inventory!");
+					if (interactable.enabled == true)
+					{
+						interactable.Interact(gameObject);
+						return;
+					}
+				}	
+			}
+
 			// No interactable found. lets assume player wants to drop current Item:
 			if (m_playerInventory == null) { m_playerInventory = GetComponent<PlayerInventory>(); }
 

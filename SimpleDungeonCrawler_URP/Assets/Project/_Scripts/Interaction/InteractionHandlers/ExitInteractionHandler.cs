@@ -30,15 +30,13 @@ namespace Project.Interaction
 		#region Public API:
 		public override void HandleInteraction(GameObject _interactor)
 		{
-
-            Debug.Log("ExitInteractionHandler: HandleInteraction()");
 			if (_interactor.TryGetComponent<PlayerInventory>(out var inventory))
 			{
                 if (!inventory.HasItem) { return; }
 
-				if (inventory.m_currentItem.ItemSO.GetType() == RequireditemSO.GetType())
+				if (inventory.CurrentItem.ItemSO == RequireditemSO)
 				{
-					Destroy(inventory.m_currentItem.gameObject);
+					Destroy(inventory.CurrentItem.gameObject);
 					OpenExit();
 				}
 			}
@@ -49,7 +47,7 @@ namespace Project.Interaction
 		private void OpenExit()
 		{
 			// TODO: This should do some sort of animation!
-            Invoke("DestroyMe", 2f);
+            Invoke("DestroyMe", 0.25f);
 		}
 
         private void DestroyMe()

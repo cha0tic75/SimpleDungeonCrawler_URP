@@ -12,37 +12,40 @@ namespace Project.Player
 	public class PlayerInventory : TransformMonoBehaviour
 	{
 		#region Inspector Assigned Field(s):
-		[field: SerializeField] public ItemInteractionHandler m_currentItem = null;
+		[field: SerializeField, ReadOnly] public ItemInteractionHandler CurrentItem { get; private set;} = null;
 		#endregion
 
 		#region Properties:
-		public bool HasItem => m_currentItem != null;
+		public bool HasItem => CurrentItem != null;
+		#endregion
+
+		#region MonoBehaviour Callback Method(s):
+		private void Start() { } // This is just here to expose the enable/disable toggle in inspector
 		#endregion
 
 		#region Public API:
 		public void AddItem(ItemInteractionHandler _item)
 		{
-			if (m_currentItem != null) { RemoveItem(m_currentItem); }
+			if (CurrentItem != null) { RemoveItem(CurrentItem); }
 
-			_item.GetComponent<Interactable>().enabled = false;
-
-			m_currentItem = _item;
-			m_currentItem.Transform.parent = Transform;
-			m_currentItem.Transform.localPosition = Vector3.zero;
+			CurrentItem = _item;
+			CurrentItem.Transform.parent = Transform;
+			CurrentItem.Transform.localPosition = Vector3.zero;
+			CurrentItem.gameObject.layer = LayerMask.NameToLayer("Default");
 		}
 
 		public void RemoveItem(ItemInteractionHandler _item)
 		{
 			_item.Transform.parent = null;
-			_item.GetComponent<Interactable>().enabled = true;
-			m_currentItem = null;
+			_item.gameObject.layer = LayerMask.NameToLayer("Interactable");
+			CurrentItem = null;
 		}
 
 		public void AttemptToDropCurrent()
 		{
-			if (m_currentItem == null) { return; }
+			if (CurrentItem == null) { return; }
 			
-			RemoveItem(m_currentItem);
+			RemoveItem(CurrentItem);
 		}
 		#endregion
 	}

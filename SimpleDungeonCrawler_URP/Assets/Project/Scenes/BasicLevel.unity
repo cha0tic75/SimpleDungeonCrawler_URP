@@ -498,6 +498,7 @@ GameObject:
   - component: {fileID: 763326259}
   - component: {fileID: 763326258}
   - component: {fileID: 763326257}
+  - component: {fileID: 763326260}
   m_Layer: 0
   m_Name: DamageWall
   m_TagString: DamageDealer
@@ -11204,6 +11205,19 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &763326260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763326253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a203c6ecc0ec7e94fae202aa5d997aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_damageAmount: 1
 --- !u!4 &786069333 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6254630799314164418, guid: febcfe6304c73cb4da0b0eb18a877604, type: 3}
@@ -11262,13 +11276,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 409572674}
     m_Modifications:
+    - target: {fileID: 1781450246362623443, guid: 619fffe2c3297754b9be1e32d385c319, type: 3}
+      propertyPath: <RequireditemSO>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 9533e3f2796448b41bec81f9d069e4b9, type: 2}
     - target: {fileID: 4868572692054318094, guid: 619fffe2c3297754b9be1e32d385c319, type: 3}
       propertyPath: m_Name
       value: ExitInteractableEntity (5)
       objectReference: {fileID: 0}
     - target: {fileID: 4868572692054318094, guid: 619fffe2c3297754b9be1e32d385c319, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5123454788717109795, guid: 619fffe2c3297754b9be1e32d385c319, type: 3}
       propertyPath: m_RootOrder
@@ -12726,7 +12744,7 @@ Tilemap:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033265980}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Tiles:
   - first: {x: -5, y: -24, z: 0}
     second:
@@ -22102,13 +22120,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 409572674}
     m_Modifications:
+    - target: {fileID: 1781450246362623443, guid: 619fffe2c3297754b9be1e32d385c319, type: 3}
+      propertyPath: <RequireditemSO>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 9533e3f2796448b41bec81f9d069e4b9, type: 2}
     - target: {fileID: 4868572692054318094, guid: 619fffe2c3297754b9be1e32d385c319, type: 3}
       propertyPath: m_Name
       value: ExitInteractableEntity (4)
       objectReference: {fileID: 0}
     - target: {fileID: 4868572692054318094, guid: 619fffe2c3297754b9be1e32d385c319, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5123454788717109795, guid: 619fffe2c3297754b9be1e32d385c319, type: 3}
       propertyPath: m_RootOrder
@@ -65541,13 +65563,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 409572674}
     m_Modifications:
+    - target: {fileID: 1781450246362623443, guid: 619fffe2c3297754b9be1e32d385c319, type: 3}
+      propertyPath: <RequireditemSO>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 9533e3f2796448b41bec81f9d069e4b9, type: 2}
     - target: {fileID: 4868572692054318094, guid: 619fffe2c3297754b9be1e32d385c319, type: 3}
       propertyPath: m_Name
       value: ExitInteractableEntity (6)
       objectReference: {fileID: 0}
     - target: {fileID: 4868572692054318094, guid: 619fffe2c3297754b9be1e32d385c319, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5123454788717109795, guid: 619fffe2c3297754b9be1e32d385c319, type: 3}
       propertyPath: m_RootOrder

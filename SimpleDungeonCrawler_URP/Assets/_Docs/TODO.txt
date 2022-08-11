@@ -1,15 +1,8 @@
 TODO:
 
 08/10/2022:
-    - Created a new Interaction system, that will do an overlapsphere to look for any colliders that have a 
-      Interactable component.  If so, then it will call its interact method, which in turn calls HandleInteraction
-      on all the InteractionHandlers attached.
-
-      NOTE: There is a strange issue where it will not find the Exit Interactable script if the player currently has 
-      an item in their inventory.
-
-
-    - Also, the Item_SO has a concept of ItemBehaviour but it is currently not being used.
+    - Create some sort of simple Animation for the ExitInteractionHandler to play when the door is open.
+      It seems silly to just destroy the object.  We may want to close it after a fixed time or something.
 
 
     - Now that the player has movement and can pick up "items", Create an exit system that when player

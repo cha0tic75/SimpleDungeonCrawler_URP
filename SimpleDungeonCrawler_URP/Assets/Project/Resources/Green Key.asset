@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8f3d421aab5ff4bb80e23454de6ed1, type: 3}
   m_Name: Green Key
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: 
+  <Name>k__BackingField: Green Key
   <ItemBehaviour>k__BackingField: {fileID: 0}
   <ItemVisuals>k__BackingField:
-    <Color>k__BackingField: {r: 0.8313726, g: 0.7725491, b: 0.10980393, a: 1}
+    <Color>k__BackingField: {r: 0.14219803, g: 0.83137256, b: 0.10980394, a: 1}
