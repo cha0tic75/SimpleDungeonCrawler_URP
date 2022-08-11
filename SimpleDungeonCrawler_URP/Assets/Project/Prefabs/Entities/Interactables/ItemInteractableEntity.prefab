@@ -36,10 +36,6 @@ PrefabInstance:
       value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1456762412582320284, guid: fb7780fcc1595744bba378cac0f82213, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ae21a5a33fd858d418eda374e3c0926a, type: 3}
-    - target: {fileID: 1456762412582320284, guid: fb7780fcc1595744bba378cac0f82213, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
@@ -101,6 +97,11 @@ PrefabInstance:
       objectReference: {fileID: 5587756787973233848}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb7780fcc1595744bba378cac0f82213, type: 3}
+--- !u!212 &586288838418850404 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1456762412582320284, guid: fb7780fcc1595744bba378cac0f82213, type: 3}
+  m_PrefabInstance: {fileID: 2023698591816047352}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5388087903279252672 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6256566697066323512, guid: fb7780fcc1595744bba378cac0f82213, type: 3}
@@ -119,3 +120,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ItemSO>k__BackingField: {fileID: 0}
+  m_spriteRenderer: {fileID: 586288838418850404}

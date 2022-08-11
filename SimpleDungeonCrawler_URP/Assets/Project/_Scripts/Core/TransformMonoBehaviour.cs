@@ -11,7 +11,7 @@ namespace Project
     public abstract class TransformMonoBehaviour : MonoBehaviour
 	{
         #region Properties:
-		public Transform Transform { get; private set; }
+		public Transform Transform { get; protected set; }
         #endregion
 
         #region MonoBehaviour Callback Method(s):

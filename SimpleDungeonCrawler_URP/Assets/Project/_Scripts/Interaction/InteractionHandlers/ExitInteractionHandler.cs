@@ -4,19 +4,29 @@
 // Written by Tim McCune <tim.mccune1975@gmail.com>
 // ######################################################################
 
+using UnityEngine;
 using Project.Items;
 using Project.Player;
-using UnityEngine;
 
 namespace Project.Interaction
 {
+	[RequireComponent(typeof(Animator))]
     public class ExitInteractionHandler : BaseInteractionHandler
 	{
 		#region Inspector Assigned Field(s):
 		[field: SerializeField] public Item_SO RequireditemSO { get; private set; }
+		[SerializeField] private SpriteRenderer m_spriteRenderer;
+		#endregion
+		
+		#region Internal State Field(s):		
+		private Animator m_animator;
+		private static int s_isOpenedBoolAnimParam = Animator.StringToHash("IsOpened");
 		#endregion
 
 		#region MonoBehaviour Callback Method(s):
+#if UNITY_EDITOR
+		private void OnValidate() => SetSpriteRendererColor();
+#endif
 		private void Start()
 		{
 			if (RequireditemSO == null) 
@@ -24,6 +34,9 @@ namespace Project.Interaction
 				Debug.LogError($"There is no Item associated with {Transform.name}"); 
 				return; 
 			}
+			m_animator = GetComponent<Animator>();
+
+			SetSpriteRendererColor();
 		} 
 		#endregion
 
@@ -37,23 +50,23 @@ namespace Project.Interaction
 				if (inventory.CurrentItem.ItemSO == RequireditemSO)
 				{
 					Destroy(inventory.CurrentItem.gameObject);
-					OpenExit();
+					SetExitState(true);
 				}
 			}
 		}
 		#endregion
 
 		#region Internally Used Method(s):
-		private void OpenExit()
+		private void SetExitState(bool _state)
 		{
-			// TODO: This should do some sort of animation!
-            Invoke("DestroyMe", 0.25f);
+			m_animator.SetBool(s_isOpenedBoolAnimParam, _state);
 		}
 
-        private void DestroyMe()
-        {
-			Destroy(gameObject);
-        }
+		private void SetSpriteRendererColor()
+		{
+			if (RequireditemSO == null || m_spriteRenderer == null) { return; }
+			m_spriteRenderer.color = RequireditemSO.ItemVisuals.Color;
+		}
 		#endregion
 	}
 }
