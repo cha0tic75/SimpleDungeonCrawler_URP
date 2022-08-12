@@ -1,6 +1,15 @@
 TODO:
 
 08/10/2022:
+    - Refactored the damage system to use composition.  This allows me to add a DamagableProvider
+      which is the means of detecting the IDamagable. As well as DamageDealerHandlers which determine 
+      how the damage is applied(One time or continuous while colliding or triggering)
+
+    - Use Shader Graph to create a shader for the electric wall flicker.  This will cause the effect to 
+      be handle on the GPU side rather than the CPU.
+
+
+
     - Extended the map, Created more keys, Added animation for open door, Created a TeleportInteractable
     - Refactored DamageDealer to be base class then CollisionDamageDealer and TriggerDamageDealer derive 
       from it.  Then concrete implementations WallCollisionDamageDealer and TrapTriggerDamageDealer.
