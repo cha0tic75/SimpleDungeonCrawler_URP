@@ -1,6 +1,18 @@
 TODO:
 
 08/10/2022:
+    - Refactor the Stat System and the Damage System
+      The Damage System should be able to cause damage to any stat.  IE Health or Stamina
+      The best approach is to refactor the StatSystem:
+        BaseStatComponent>RegeStatComponent  BaseStatComponent will have a reference to a StatType_SO
+        And have Exposed method(s): Consume() which removes from current and Apply() which adds to it.
+        Consume() will be within the IDamagable interface and BaseStatComponent will implement it.
+        Apply() will be part of the IHealable interface and BaseStatComponent will also implement this.
+
+        The damagableProviders will also have a reference to a StatType_SO and will grab ALL components
+        on the collider that implement IDamagable.  Then filter it to match its reference to StatType_SO.
+        This is what will be provided to the DamageDealer
+
     - The BaseStatComponent needs some sort of means to test if it can regenerate(Besides not having any damage or not sprinting)
       IE: it would be cool to only allow the players health to regen if they are not moving:
 
