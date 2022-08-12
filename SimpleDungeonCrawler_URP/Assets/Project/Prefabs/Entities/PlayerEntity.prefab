@@ -166,8 +166,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveSpeed: 3
+  m_sprintcomponent: {fileID: 4761247565084869867}
   m_sprintSpeedModifier: 1.65
-  m_isSprinting: 0
+--- !u!114 &4761247565084869867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928538657056613615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d85c5985e71ec479fe1f89f766fb40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_sprintCost: 2.5
+  m_statComponent: {fileID: 7181259773429338727}
+--- !u!114 &7181259773429338727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928538657056613615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ed6f95d333d854baf8a779fc759b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <StartValue>k__BackingField: 10
+  <ValueRange>k__BackingField:
+    <Min>k__BackingField: 0
+    <Max>k__BackingField: 10
+  <CurrentValue>k__BackingField: 0
+  m_regenAmount: 0.5
+  m_regenAfter: 2
 --- !u!114 &9155170140399485676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,3 +217,4 @@ MonoBehaviour:
   m_interactLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  m_showGizmos: 0

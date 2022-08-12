@@ -9,7 +9,6 @@ using UnityEngine;
 
 namespace Project.Stats
 {
-
     public class HealthStatComponent : BaseStatComponent, Damage.IDamagable
 	{
 		#region Delegate(s):
@@ -20,6 +19,7 @@ namespace Project.Stats
 		public void TakeDamage(float _damageAmount)
 		{
 			AlterCurrentValue(-_damageAmount);
+			m_lastAlterCurrentValueTime = Time.time;
 
 			if (CurrentValue == 0) { OnDeathEvent?.Invoke(transform.position, this); }
 		}

@@ -5,6 +5,7 @@
 // ######################################################################
 
 using System;
+using Project.Stats;
 using UnityEngine;
 
 namespace Project.Player
@@ -17,16 +18,16 @@ namespace Project.Player
 
 		#region Inspector Assigned Field(s):
 		[SerializeField] private float m_moveSpeed = 4f;
+		[SerializeField] private PlayerSprintComponent m_sprintcomponent;
 		[SerializeField] private float m_sprintSpeedModifier = 1.4f;
 		#endregion
 
 		#region Internal State Field(s):
 		private Vector2 m_movementInputVector = Vector2.zero;
-		[SerializeField] private bool m_isSprinting = false;
         #endregion
 
         #region Properties:
-        private float CurrentMoveSpeed => m_moveSpeed * ((m_isSprinting) ? m_sprintSpeedModifier : 1f);
+        private float CurrentMoveSpeed => m_moveSpeed * ((m_sprintcomponent.IsSprinting) ? m_sprintSpeedModifier : 1f);
 		#endregion
 
 		#region MonoBehaviour Callback Method(s):
@@ -35,7 +36,7 @@ namespace Project.Player
 			m_movementInputVector.x = Input.GetAxisRaw("Horizontal");
 			m_movementInputVector.y = Input.GetAxisRaw("Vertical");
 
-			m_isSprinting = Input.GetKey(KeyCode.LeftShift);
+			m_sprintcomponent.SetSprintInput(Input.GetKey(KeyCode.LeftShift));
 
 			if (Input.GetKeyDown(KeyCode.Space)) { OnItemInteractionEvent?.Invoke(); }
 		}

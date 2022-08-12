@@ -22,6 +22,13 @@ namespace Project.Stats
 		[field: SerializeField, ReadOnly] 
 #endif
 		public float CurrentValue { get; protected set; }
+		[Header("Regen Settings:")]
+        [SerializeField] private float m_regenAmount = 0.5f;
+        [SerializeField] private float m_regenAfterWaitTime = 2f;
+        #endregion
+
+		#region Internal State Field(s):
+        protected float m_lastAlterCurrentValueTime = 0;
 		#endregion
 
 		#region Properties:
@@ -30,6 +37,16 @@ namespace Project.Stats
 
 		#region MonoBehaviour Callback Method(s):
 		private void Start() => CurrentValue = StartValue;
+        private void Update()
+        {
+            if (Time.time >  m_regenAfterWaitTime + m_lastAlterCurrentValueTime)
+            {
+                if (CurrentValue < ValueRange.Max)
+                {
+                    AlterCurrentValue(m_regenAmount * Time.deltaTime);
+                }
+            }
+        }
 		#endregion
 
 		#region Internally Used Method(s):
