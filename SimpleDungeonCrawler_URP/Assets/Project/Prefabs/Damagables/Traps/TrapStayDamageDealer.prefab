@@ -20,34 +20,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 998767950053260016, guid: 1ff6bf29e1ec0ca4dbf5226b82ab409b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 998767950053260016, guid: 1ff6bf29e1ec0ca4dbf5226b82ab409b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 998767950053260016, guid: 1ff6bf29e1ec0ca4dbf5226b82ab409b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 998767950053260016, guid: 1ff6bf29e1ec0ca4dbf5226b82ab409b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 998767950053260016, guid: 1ff6bf29e1ec0ca4dbf5226b82ab409b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 998767950053260016, guid: 1ff6bf29e1ec0ca4dbf5226b82ab409b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 998767950053260016, guid: 1ff6bf29e1ec0ca4dbf5226b82ab409b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 998767950053260016, guid: 1ff6bf29e1ec0ca4dbf5226b82ab409b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -82,10 +54,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a6d86935102174b8c1db4a3b343107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_hideOnExit: 0
   m_damageRange:
     <Min>k__BackingField: 1
     <Max>k__BackingField: 1
   m_audiosource: {fileID: 2998062960390967469}
+  m_damageEffects:
+  - {fileID: 11400000, guid: a80dcdecd94b3274fadd3c6983809b48, type: 2}
   m_damageFrequency: 0.5
 --- !u!82 &2998062960390967469 stripped
 AudioSource:

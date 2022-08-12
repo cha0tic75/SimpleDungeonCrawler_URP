@@ -1,6 +1,15 @@
 TODO:
 
 08/10/2022:
+
+    - Refactor Stats so that there are no longer health and Stamina but 
+      StatComponent and RegeStatComponent(Which derives from StatComponent) and StatComponent implements IDamagable
+
+    - Create a Singleton called PersistentObjects that has a reference to an AudioSource
+      Then create a new DamageEffect to play an audioClip.
+
+
+
     - Refactor the Stat System and the Damage System
       The Damage System should be able to cause damage to any stat.  IE Health or Stamina
       The best approach is to refactor the StatSystem:

@@ -51,29 +51,33 @@ namespace Project.Damage
 		#endregion
 
         #region Internally Used Method(s):
-		private void StopCoroutineIfRunning()
-		{
+		private void StopCoroutineIfRunning() => 
 			HelperMethods.StopCoroutineIfRunning(ref m_damageCoroutine, this);
-			m_audiosource?.Stop();
-		}
         #endregion
 
 		#region Coroutine(s):
 		private IEnumerator DamageCoroutine()
 		{
-			m_audiosource?.Play();
 			while (m_damagables.Count > 0)
 			{
 				foreach (var damagable in m_damagables.ToList())
 				{
 					damagable.TakeDamage(m_damageRange.GetRandomValueInRange());
+					yield return PlayDamageEffects();
 					yield return null;
 				}
 				yield return HelperMethods.CustomWFS(m_damageFrequency);
 			}
 
-			m_audiosource?.Stop();
 			m_damageCoroutine = null;
+		}
+		private IEnumerator PlayDamageEffects()
+		{
+			foreach (var damageEffect in m_damageEffects)
+			{
+				damageEffect?.PerformEffect();
+				yield return null;
+			}
 		}
 		#endregion
     }

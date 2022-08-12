@@ -5,7 +5,7 @@
 // ######################################################################
 
 using System;
-using Project.Stats;
+using Project.CameraSystem;
 using UnityEngine;
 
 namespace Project.Player
@@ -39,6 +39,9 @@ namespace Project.Player
 			m_sprintcomponent.SetSprintInput(Input.GetKey(KeyCode.LeftShift));
 
 			if (Input.GetKeyDown(KeyCode.Space)) { OnItemInteractionEvent?.Invoke(); }
+
+			// Test Code: 
+			if (Input.GetKeyDown(KeyCode.Escape)) { CameraTools.Instance.CameraShaker.Shake(); }
 		}
 
 		private void FixedUpdate()

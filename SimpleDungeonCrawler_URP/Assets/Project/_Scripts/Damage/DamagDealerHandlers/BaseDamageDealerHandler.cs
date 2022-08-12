@@ -15,13 +15,8 @@ namespace Project.Damage
 		#region Inspector Assigned Field(s):
 		[SerializeField] private bool m_hideOnExit = false;
 		[SerializeField] protected MinMaxFloat m_damageRange;
-		[SerializeField] protected AudioSource m_audiosource;
+		[SerializeField] protected List<BaseDamageEffect_SO> m_damageEffects = new List<BaseDamageEffect_SO>();
 		#endregion
-
-
-        #region MonoBehaviour Callback Method(s):
-		private void Start() => m_audiosource = GetComponent<AudioSource>();
-        #endregion
 
 		#region Public API:
 		public abstract void HandleOnEnterDamage(IDamagable _damagable);

@@ -16,6 +16,7 @@ namespace Project.Stats
 		#endregion
 
 		#region Inspector Assigned Field(s):
+		[field: SerializeField] public StatType_SO StatType { get; private set; }
 		[field: SerializeField] public float StartValue { get; protected set; } = 10;
 		[field: SerializeField] public MinMaxFloat ValueRange { get; private set; }
 #if UNITY_EDITOR

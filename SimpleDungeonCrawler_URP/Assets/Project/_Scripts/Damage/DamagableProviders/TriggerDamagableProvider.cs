@@ -17,14 +17,20 @@ namespace Project.Damage
 		{
 			if (_collider.TryGetComponent<IDamagable>(out var damagable))
 			{
-				InvokeOnDamagableEnterEvent(damagable);
+				if (damagable.StatType == m_damageStatType)
+				{
+					InvokeOnDamagableEnterEvent(damagable);
+				}
 			}
 		}
 		private void OnTriggerExit2D(Collider2D _collider) 
 		{
 			if (_collider.TryGetComponent<IDamagable>(out var damagable))
 			{
-				InvokeOnDamagableExitEvent(damagable);
+				if (damagable.StatType == m_damageStatType)
+				{
+					InvokeOnDamagableExitEvent(damagable);
+				}
 			}
 		}
 		#endregion

@@ -5,6 +5,7 @@
 // ######################################################################
 
 using System;
+using Project.Stats;
 using UnityEngine;
 
 namespace Project.Damage
@@ -14,6 +15,10 @@ namespace Project.Damage
 		#region Delegate(s):
 		public event Action<IDamagable> OnDamagableEnterEvent;
 		public event Action<IDamagable> OnDamagableExitEvent;
+		#endregion
+
+		#region Inspector Assigned Field(s):
+		[SerializeField] protected StatType_SO m_damageStatType;
 		#endregion
 
 		#region Internally Used Method(s):
