@@ -13,26 +13,8 @@ namespace Project.Damage
 	{
 		#region MonoBehaviour Callback Method(s):
 		private void Start() => GetComponent<Collider2D>().isTrigger = true;
-		private void OnTriggerEnter2D(Collider2D _collider) 
-		{
-			if (_collider.TryGetComponent<IDamagable>(out var damagable))
-			{
-				if (damagable.StatType == m_damageStatType)
-				{
-					InvokeOnDamagableEnterEvent(damagable);
-				}
-			}
-		}
-		private void OnTriggerExit2D(Collider2D _collider) 
-		{
-			if (_collider.TryGetComponent<IDamagable>(out var damagable))
-			{
-				if (damagable.StatType == m_damageStatType)
-				{
-					InvokeOnDamagableExitEvent(damagable);
-				}
-			}
-		}
+		private void OnTriggerEnter2D(Collider2D _collider) => HandleOnEnter(_collider);
+		private void OnTriggerExit2D(Collider2D _collider) => HandleOnExit(_collider);
 		#endregion
 	}
 }

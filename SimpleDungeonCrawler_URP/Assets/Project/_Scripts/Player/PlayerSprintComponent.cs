@@ -13,7 +13,7 @@ namespace Project.Player
 	{
 		#region Inspector Assigned Field(s):
 		[SerializeField] private float m_sprintCost = 1f;
-		[SerializeField] private PlayerStaminaStatComponent m_statComponent;
+		[SerializeField] private StatComponent m_statComponent;
 		#endregion
 
 		#region Internal State Field(s):

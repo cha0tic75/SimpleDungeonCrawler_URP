@@ -1,54 +1,22 @@
 TODO:
 
-08/10/2022:
+08/13/2022:
+    - I refactored the damage system and stat system to use referfences to StatType_SO.  This allows the damage system to apply damage
+      to more than one stat.  However, this was done in the DamagableProviders.  Perhaps the DamageDealerHandlers should hold these 
+      references and the DamagableProviders should just broadcast a IDamagable[] (or list). amd the DamageDealerHandlers can decide 
+      what to do with them.
 
-    - Refactor Stats so that there are no longer health and Stamina but 
-      StatComponent and RegeStatComponent(Which derives from StatComponent) and StatComponent implements IDamagable
-
-    - Create a Singleton called PersistentObjects that has a reference to an AudioSource
-      Then create a new DamageEffect to play an audioClip.
+    - I created a minimap.
 
 
-
-    - Refactor the Stat System and the Damage System
-      The Damage System should be able to cause damage to any stat.  IE Health or Stamina
-      The best approach is to refactor the StatSystem:
-        BaseStatComponent>RegeStatComponent  BaseStatComponent will have a reference to a StatType_SO
-        And have Exposed method(s): Consume() which removes from current and Apply() which adds to it.
-        Consume() will be within the IDamagable interface and BaseStatComponent will implement it.
-        Apply() will be part of the IHealable interface and BaseStatComponent will also implement this.
-
-        The damagableProviders will also have a reference to a StatType_SO and will grab ALL components
-        on the collider that implement IDamagable.  Then filter it to match its reference to StatType_SO.
-        This is what will be provided to the DamageDealer
+08/12/2022:
 
     - The BaseStatComponent needs some sort of means to test if it can regenerate(Besides not having any damage or not sprinting)
       IE: it would be cool to only allow the players health to regen if they are not moving:
 
-    - Refactored the damage system to use composition.  This allows me to add a DamagableProvider
-      which is the means of detecting the IDamagable. As well as DamageDealerHandlers which determine 
-      how the damage is applied(One time or continuous while colliding or triggering)
-
     - Use Shader Graph to create a shader for the electric wall flicker.  This will cause the effect to 
       be handle on the GPU side rather than the CPU.
-
-    - Extended the map, Created more keys, Added animation for open door, Created a TeleportInteractable
-    - Refactored DamageDealer to be base class then CollisionDamageDealer and TriggerDamageDealer derive 
-      from it.  Then concrete implementations WallCollisionDamageDealer and TrapTriggerDamageDealer.
-    - I plugged in some UI for health and stamina.  Health seems to be working good.  
-      I need to plug in the stamina one.
-
-     Health:  This should regenerate if player isn't moving or being damaged.
-
-     Stamina: This should have a value like health that is consumed when the player is sprinting.
-              The PlayerController should not allow player to move faster if out of stamina.
-              Stamina should regen when player isn't moving.
 
     - flesh out the rest of the level geometry and place the appropriate keys.
     - Create some concept of enemy. This can be as simple as a square that moves up and down 
       at regular intervals.
-
-    - Refactor the Damage dealer!  There should be TriggerVolume and CollisionVolume components
-      Then TriggerVolumeHandler and CollisionVolumeHandler  This is where the damage should come from
-      This will enable me to use triggerVolume to do other things like start enemies bouncing around 
-      or something.

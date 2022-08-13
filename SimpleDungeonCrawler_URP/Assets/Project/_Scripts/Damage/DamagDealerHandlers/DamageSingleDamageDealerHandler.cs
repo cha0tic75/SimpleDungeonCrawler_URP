@@ -11,7 +11,7 @@ namespace Project.Damage
 		#region Public API:
 		public override void HandleOnEnterDamage(IDamagable _damagable)
 		{
-			_damagable.TakeDamage(m_damageRange.GetRandomValueInRange());
+			_damagable.Consume(m_damageRange.GetRandomValueInRange());
 			m_damageEffects.ForEach(de => de.PerformEffect());
 		} 
         #endregion

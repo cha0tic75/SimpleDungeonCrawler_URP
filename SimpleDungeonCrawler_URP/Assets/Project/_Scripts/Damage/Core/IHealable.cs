@@ -4,10 +4,10 @@
 // Written by Tim McCune <tim.mccune1975@gmail.com>
 // ######################################################################
 
-namespace Project.Damage
+namespace Project
 {
     public interface IHealable
 	{
-		void Heal(int _healAmount);
+		void Apply(float _applyAmount);
 	}
 }

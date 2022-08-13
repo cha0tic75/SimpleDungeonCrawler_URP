@@ -62,7 +62,7 @@ namespace Project.Damage
 			{
 				foreach (var damagable in m_damagables.ToList())
 				{
-					damagable.TakeDamage(m_damageRange.GetRandomValueInRange());
+					damagable.Consume(m_damageRange.GetRandomValueInRange());
 					yield return PlayDamageEffects();
 					yield return null;
 				}

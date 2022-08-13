@@ -12,26 +12,9 @@ namespace Project.Damage
 	public class CollisionDamagableProvider : BaseDamagableProvider
 	{
 		#region MonoBEhaviour Callback Method(s):
-		private void OnCollisionEnter2D(Collision2D _collision) 
-		{
-			if (_collision.gameObject.TryGetComponent<IDamagable>(out var damagable))
-			{
-				if (damagable.StatType == m_damageStatType)
-				{
-					InvokeOnDamagableEnterEvent(damagable);
-				}
-			}
-		}
-		private void OnCollisionExit2D(Collision2D _collision) 
-		{
-			if (_collision.gameObject.TryGetComponent<IDamagable>(out var damagable))
-			{
-				if (damagable.StatType == m_damageStatType)
-				{
-					InvokeOnDamagableExitEvent(damagable);
-				}
-			}
-		}
+		private void Start() => GetComponent<Collider2D>().isTrigger = false;
+		private void OnCollisionEnter2D(Collision2D _collision) => HandleOnEnter(_collision.collider);
+		private void OnCollisionExit2D(Collision2D _collision) => HandleOnExit(_collision.collider);
 		#endregion
 	}
 }

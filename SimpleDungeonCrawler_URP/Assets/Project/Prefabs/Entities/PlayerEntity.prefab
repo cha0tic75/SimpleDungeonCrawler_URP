@@ -136,23 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CurrentItem>k__BackingField: {fileID: 0}
---- !u!114 &2881344487227543803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5928538657056613615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed8442c4025d354d9b4a17cd724e690, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <StartValue>k__BackingField: 10
-  <ValueRange>k__BackingField:
-    <Min>k__BackingField: 0
-    <Max>k__BackingField: 10
-  <CurrentValue>k__BackingField: 0
 --- !u!114 &3623137380688457811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,8 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_sprintCost: 2.5
-  m_statComponent: {fileID: 7181259773429338727}
---- !u!114 &7181259773429338727
+  m_statComponent: {fileID: 7738307780714047717}
+--- !u!114 &7738307780714047717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,17 +174,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 5928538657056613615}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07ed6f95d333d854baf8a779fc759b14, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bd2ea8742d468d44b1779c45eeb34c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <StartValue>k__BackingField: 10
+  <StatType>k__BackingField: {fileID: 11400000, guid: 0f67e63ed4625504795c030602ce882c, type: 2}
+  m_statMeter: {fileID: 0}
   <ValueRange>k__BackingField:
     <Min>k__BackingField: 0
     <Max>k__BackingField: 10
   <CurrentValue>k__BackingField: 0
   m_regenAmount: 0.5
-  m_regenAfter: 2
---- !u!114 &9155170140399485676
+  m_regenAfterWaitTime: 2
+--- !u!114 &9160338580381114744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928538657056613615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd2ea8742d468d44b1779c45eeb34c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <StatType>k__BackingField: {fileID: 11400000, guid: 631b85a98b8439c43954b866cec4f0f1, type: 2}
+  m_statMeter: {fileID: 0}
+  <ValueRange>k__BackingField:
+    <Min>k__BackingField: 0
+    <Max>k__BackingField: 10
+  <CurrentValue>k__BackingField: 0
+  m_regenAmount: 0.5
+  m_regenAfterWaitTime: 2
+--- !u!114 &1857142529289563218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

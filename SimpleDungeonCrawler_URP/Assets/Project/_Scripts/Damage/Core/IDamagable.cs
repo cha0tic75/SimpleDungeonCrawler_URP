@@ -6,11 +6,12 @@
 
 using Project.Stats;
 
-namespace Project.Damage
+namespace Project
 {
     public interface IDamagable
 	{
 		StatType_SO StatType { get; }
-		void TakeDamage(float _damageAmount);
+
+		void Consume(float _damageAmount);
 	}
 }
