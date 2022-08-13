@@ -16,6 +16,13 @@ namespace Project.CameraSystem
 		#endregion
 
 		#region MonoBehaviour Callback Method(s):
+		private void Start()
+		{
+			if (m_targetTransform == null)
+			{
+				m_targetTransform = FindObjectOfType<Player.PlayerController>().Transform;
+			}
+		}
 		private void FixedUpdate()
 		{
 			if (m_targetTransform == null) { return; }
