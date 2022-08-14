@@ -14,6 +14,7 @@ namespace Project.CameraSystem
 		#region Inspector Assigned Field(s):
 		[field: SerializeField] public SimpleCameraFollow CameraFollow { get; private set; }
 		[field: SerializeField] public CameraShaker CameraShaker { get; private set; }
+		[field: SerializeField] public CameraZoom CameraZoom { get; private set; }
 		#endregion
 	}
 }

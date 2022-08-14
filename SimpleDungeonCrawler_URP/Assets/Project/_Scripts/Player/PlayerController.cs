@@ -18,6 +18,7 @@ namespace Project.Player
 
 		#region Inspector Assigned Field(s):
 		[SerializeField] private float m_moveSpeed = 4f;
+		[SerializeField] private PlayerAnimatorController m_animatorController;
 		[SerializeField] private PlayerSprintComponent m_sprintcomponent;
 		[SerializeField] private float m_sprintSpeedModifier = 1.4f;
 		#endregion
@@ -49,6 +50,8 @@ namespace Project.Player
 			// TODO: Use the Rigidbody to move instead of the transform
 			Vector3 movementVector = new Vector3(m_movementInputVector.x, m_movementInputVector.y, 0f).normalized;
 			Transform.position += movementVector * CurrentMoveSpeed * Time.deltaTime;
+			
+			m_animatorController?.SetMoveSpeed(movementVector.magnitude);
 		}
 		#endregion
 	}

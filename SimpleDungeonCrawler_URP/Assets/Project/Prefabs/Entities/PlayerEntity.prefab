@@ -123,6 +123,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!95 &7925872999424373734
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928538657056613615}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dc2196f4cb4e250468adeed9fc25f967, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1281689417862139786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +156,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CurrentItem>k__BackingField: {fileID: 0}
+--- !u!114 &1857142529289563218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928538657056613615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12ee01efb495efb43965469b15903e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_interactRadius: 0.4
+  m_interactLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  m_showGizmos: 0
 --- !u!114 &3623137380688457811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveSpeed: 3
+  m_animatorController: {fileID: 0}
   m_sprintcomponent: {fileID: 4761247565084869867}
   m_sprintSpeedModifier: 1.65
 --- !u!114 &4761247565084869867
@@ -205,7 +243,7 @@ MonoBehaviour:
   <CurrentValue>k__BackingField: 0
   m_regenAmount: 0.5
   m_regenAfterWaitTime: 2
---- !u!114 &1857142529289563218
+--- !u!114 &3318682904552128907
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -214,11 +252,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5928538657056613615}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12ee01efb495efb43965469b15903e3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 981ac76444a3dc042a8156ed327f53c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_interactRadius: 0.4
-  m_interactLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  m_showGizmos: 0
+  m_animator: {fileID: 7925872999424373734}
+  m_healthStat: {fileID: 9160338580381114744}
+  m_staminaStat: {fileID: 7738307780714047717}

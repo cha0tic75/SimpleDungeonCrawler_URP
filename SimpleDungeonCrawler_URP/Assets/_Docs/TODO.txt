@@ -1,5 +1,14 @@
 TODO:
 
+08/14/2022:
+    - Added some animations to the player to give a bit of juice to the game: Idle, Movement, DamageHealth, DamageStamina
+      The 2 damage anims need to be simplified to 1.  If a damagedealer is dealing damage to both, the animation doesnt 
+      really look that great(Since only one animation can be playing at 1x).
+
+      No Handle Animations, I created a PlayerAnimatorController component.  The player controller passes the MovementInput.Mag
+      to the SetMoveSpeed method in the PlayerAnimatorController component.  The take damage is handled by listening to events on
+      the StatComponent.
+
 08/13/2022:
     - I refactored the damage system and stat system to use referfences to StatType_SO.  This allows the damage system to apply damage
       to more than one stat.  However, this was done in the DamagableProviders.  Perhaps the DamageDealerHandlers should hold these 
