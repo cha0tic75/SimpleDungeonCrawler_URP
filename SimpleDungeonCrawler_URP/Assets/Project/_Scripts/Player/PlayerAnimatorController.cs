@@ -20,20 +20,19 @@ namespace Project.Player
 
 		#region Internal State Field(s):
 		private static int s_moveSpeedFloatAnimParam = Animator.StringToHash("MoveSpeed");
-		private static int s_takeHealthDamageTriggerAnimParam = Animator.StringToHash("TakeHealthDamage");
-		private static int s_takeStaminaDamageTriggerAnimParam = Animator.StringToHash("TakeStaminaDamage");
+		private static int s_takeDamageTriggerAnimParam = Animator.StringToHash("TakeDamage");
 		#endregion
 
 		#region MonoBehaviour Callback Method(s):
 		private void OnEnable()
 		{
-			m_healthStat.OnValueChangedEvent += Stat_OnValuedChangedCallback;
-			m_staminaStat.OnValueChangedEvent += Stat_OnValuedChangedCallback;
+			m_healthStat.OnTakeDamageEvent += Stat_OnTakeDamageCallback;
+			m_staminaStat.OnTakeDamageEvent += Stat_OnTakeDamageCallback;
 		}
 		private void OnDisable()
 		{
-			m_healthStat.OnValueChangedEvent -= Stat_OnValuedChangedCallback;
-			m_staminaStat.OnValueChangedEvent -= Stat_OnValuedChangedCallback;
+			m_healthStat.OnTakeDamageEvent -= Stat_OnTakeDamageCallback;
+			m_staminaStat.OnTakeDamageEvent -= Stat_OnTakeDamageCallback;
 		}
         #endregion
 
@@ -41,17 +40,12 @@ namespace Project.Player
         public void SetMoveSpeed(float _moveSpeed) => m_animator.SetFloat(s_moveSpeedFloatAnimParam, _moveSpeed);
 		#endregion
 
-		#region Internally Used Method(s):
-		private int GetAnimHashFromStatComponent(StatComponent _statComponent) => 
-			(_statComponent == m_healthStat) ? s_takeHealthDamageTriggerAnimParam : s_takeStaminaDamageTriggerAnimParam;
-		#endregion
-
 		#region Callback Method(s):
-        private void Stat_OnValuedChangedCallback(float _value, StatComponent _statComponent)
+        private void Stat_OnTakeDamageCallback(float _value, StatComponent _statComponent)
         {
             if (_value < 0)
 			{
-				m_animator.SetTrigger(GetAnimHashFromStatComponent(_statComponent));
+				m_animator.SetTrigger(s_takeDamageTriggerAnimParam);
 			}
         }
 		#endregion

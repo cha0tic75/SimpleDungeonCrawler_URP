@@ -14,6 +14,7 @@ namespace Project.Stats
     public class StatComponent : MonoBehaviour, IDamagable, IHealable
 	{
 		#region Delegate(s):
+		public event Action<float, StatComponent> OnTakeDamageEvent;
 		public event Action<float, StatComponent> OnValueChangedEvent;
 		#endregion
 
@@ -45,7 +46,14 @@ namespace Project.Stats
         #endregion
 
         #region Public API:
-        public virtual void Consume(float _consumeAmount) => AlterCurrentValue(-_consumeAmount);
+        public virtual void Consume(float _consumeAmount, ConsumeType _consumeType)
+		{
+			AlterCurrentValue(-_consumeAmount);
+			if (_consumeType == ConsumeType.Damage)
+			{
+				OnTakeDamageEvent?.Invoke(_consumeAmount, this);
+			}
+		}
 
         public virtual void Apply(float _applyAmount) => AlterCurrentValue(_applyAmount);
         #endregion

@@ -176,9 +176,17 @@ PrefabInstance:
       value: TeleportInteractableEntity
       objectReference: {fileID: 0}
     - target: {fileID: 6446502553557456428, guid: fb7780fcc1595744bba378cac0f82213, type: 3}
+      propertyPath: m_interactionEffects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6446502553557456428, guid: fb7780fcc1595744bba378cac0f82213, type: 3}
       propertyPath: m_interactionHandlers.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6446502553557456428, guid: fb7780fcc1595744bba378cac0f82213, type: 3}
+      propertyPath: m_interactionEffects.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4245b9cca65bcbd478369576fa2efe48, type: 2}
     - target: {fileID: 6446502553557456428, guid: fb7780fcc1595744bba378cac0f82213, type: 3}
       propertyPath: m_interactionHandlers.Array.data[0]
       value: 

@@ -1,6 +1,8 @@
 TODO:
 
 08/14/2022:
+    - There seems to be a bug in the sprint mechanic.  I was able to still sprint, even after releasing the button.
+
     - Added some animations to the player to give a bit of juice to the game: Idle, Movement, DamageHealth, DamageStamina
       The 2 damage anims need to be simplified to 1.  If a damagedealer is dealing damage to both, the animation doesnt 
       really look that great(Since only one animation can be playing at 1x).

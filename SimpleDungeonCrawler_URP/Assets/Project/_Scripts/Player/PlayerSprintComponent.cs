@@ -31,7 +31,7 @@ namespace Project.Player
 			float sprintCostDelta = m_sprintCost * Time.deltaTime;
 
 			IsSprinting = m_statComponent.CurrentValue > sprintCostDelta;
-			m_statComponent.Consume(sprintCostDelta);
+			m_statComponent.Consume(sprintCostDelta, ConsumeType.Use);
 		}
 		#endregion
 		

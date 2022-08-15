@@ -25,10 +25,10 @@ namespace Project.Stats
         #endregion
 
         #region Public API:
-        public override void Consume(float _consumeAmount)
+        public override void Consume(float _consumeAmount, ConsumeType _consumeType)
         {
             m_lastConsumeCurrentValueTime = Time.time;
-            base.Consume(_consumeAmount);
+            base.Consume(_consumeAmount, _consumeType);
         }
         #endregion
 

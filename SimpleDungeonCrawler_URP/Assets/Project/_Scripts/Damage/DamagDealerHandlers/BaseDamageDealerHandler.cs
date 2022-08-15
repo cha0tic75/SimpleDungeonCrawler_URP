@@ -15,7 +15,7 @@ namespace Project.Damage
 		#region Inspector Assigned Field(s):
 		[SerializeField] private bool m_hideOnExit = false;
 		[SerializeField] protected MinMaxFloat m_damageRange;
-		[SerializeField] protected List<BaseDamageEffect_SO> m_damageEffects = new List<BaseDamageEffect_SO>();
+		[SerializeField] protected List<BaseEffect_SO> m_damageEffects = new List<BaseEffect_SO>();
 		#endregion
 
 		#region Public API:

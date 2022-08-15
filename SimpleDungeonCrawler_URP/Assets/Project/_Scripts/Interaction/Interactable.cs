@@ -13,6 +13,7 @@ namespace Project.Interaction
 	{
 		#region Inspector Assigned Field(s):
 		[SerializeField] private List<BaseInteractionHandler> m_interactionHandlers;
+		[SerializeField] private List<BaseEffect_SO> m_interactionEffects;
 		#endregion
 
 		#region Inspector Assigned Field(s):
@@ -22,6 +23,8 @@ namespace Project.Interaction
 		#region Public API:
 		public void Interact(GameObject _interactor)
 		{
+			m_interactionEffects.ForEach(ie => ie.PerformEffect());
+
 			for (int i = 0; i < m_interactionHandlers.Count; i++)
 			{
 				BaseInteractionHandler interactionHandler = m_interactionHandlers[i];
