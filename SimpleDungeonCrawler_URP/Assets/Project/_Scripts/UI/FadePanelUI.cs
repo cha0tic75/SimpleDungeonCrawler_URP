@@ -27,6 +27,7 @@ namespace Project.UI
 		#endregion
 		
 		#region Public API:
+		public void AlphaOverride(float _alpha) => m_canvasGroup.alpha = _alpha;
 		public void FadeOut(float _duration = 0f)
 		{
 			StopCoroutineIfRunning();

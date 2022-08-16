@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_DamageWall_Shader
+  m_Name: Shader Graphs_Glow_Shader
   m_Shader: {fileID: -6465566751694194690, guid: cbbbbbd3c5e621143b4f0647bd1ed275, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []

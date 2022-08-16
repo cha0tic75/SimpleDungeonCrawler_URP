@@ -25,10 +25,16 @@ namespace Project.CameraSystem
 
 			StartCoroutine(ShakeCoroutine(duration, magnitude));
 		}
-		#endregion
 
-		#region Coroutine(s):
-		private IEnumerator ShakeCoroutine(float _duration, float _magnitude)
+        public override void Reset()
+		{
+			StopAllCoroutines();
+			Transform.localPosition = Vector3.zero;
+		}
+        #endregion
+
+        #region Coroutine(s):
+        private IEnumerator ShakeCoroutine(float _duration, float _magnitude)
 		{
 			float elapsedTime = 0f;
 

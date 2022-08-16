@@ -15,28 +15,28 @@ namespace Project.Player
 		[SerializeField] private float m_sprintCost = 1f;
 		[SerializeField] private StatComponent m_statComponent;
 		#endregion
-
-		#region Internal State Field(s):
-		private bool m_sprintInput;
-		#endregion
 		
 		#region Properties:
 		public bool IsSprinting { get; private set; }
+		private float SprintCostDelta => m_sprintCost * Time.deltaTime;
 		#endregion
 
 		#region MonoBehaviour Callback Method(s):
 		private void Update()
 		{
-			if (!m_sprintInput) { return; }
-			float sprintCostDelta = m_sprintCost * Time.deltaTime;
+			if (!IsSprinting) { return; }
 
-			IsSprinting = m_statComponent.CurrentValue > sprintCostDelta;
-			m_statComponent.Consume(sprintCostDelta, ConsumeType.Use);
+			m_statComponent.Consume(SprintCostDelta, ConsumeType.Use);
 		}
 		#endregion
 		
 		#region Public API:
-		public void SetSprintInput(bool _sprintInput) => m_sprintInput = _sprintInput;
+		public void SetSprintInput(bool _sprintInput) =>
+			IsSprinting = _sprintInput && CanSprint();
+		#endregion
+
+		#region Internally Used Method(s):
+		private bool CanSprint() => m_statComponent.CurrentValue > SprintCostDelta;
 		#endregion
 	}
 }

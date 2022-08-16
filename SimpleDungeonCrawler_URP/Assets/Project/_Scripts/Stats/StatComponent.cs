@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Project.Stats
 {
-    public class StatComponent : MonoBehaviour, IDamagable, IHealable
+    public class StatComponent : MonoBehaviour, IDamagable, IHealable, IResetable
 	{
 		#region Delegate(s):
 		public event Action<float, StatComponent> OnTakeDamageEvent;
@@ -35,7 +35,7 @@ namespace Project.Stats
         #region MonoBehaviour Callback Method(s):
         private void Start()
         {
-            CurrentValue = ValueRange.Max;
+            Reset();
 
             if (m_statMeter == null)
             {
@@ -56,6 +56,8 @@ namespace Project.Stats
 		}
 
         public virtual void Apply(float _applyAmount) => AlterCurrentValue(_applyAmount);
+
+		public void Reset() => CurrentValue = ValueRange.Max;
         #endregion
 
 		#region Internally Used Method(s):

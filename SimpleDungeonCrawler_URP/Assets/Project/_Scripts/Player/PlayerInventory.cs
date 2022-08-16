@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Project.Player
 {
-	public class PlayerInventory : TransformMonoBehaviour
+    public class PlayerInventory : TransformMonoBehaviour, IResetable
 	{
 		#region Inspector Assigned Field(s):
 		[field: SerializeField, ReadOnly] public ItemInteractionHandler CurrentItem { get; private set;} = null;
@@ -29,14 +29,14 @@ namespace Project.Player
 			if (CurrentItem != null) { RemoveItem(CurrentItem); }
 
 			CurrentItem = _item;
-			CurrentItem.Transform.parent = Transform;
-			CurrentItem.Transform.localPosition = Vector3.zero;
+			CurrentItem.transform.parent = Transform;
+			CurrentItem.transform.localPosition = Vector3.zero;
 			CurrentItem.gameObject.layer = LayerMask.NameToLayer("Default");
 		}
 
 		public void RemoveItem(ItemInteractionHandler _item)
 		{
-			_item.Transform.parent = null;
+			_item.transform.parent = null;
 			_item.gameObject.layer = LayerMask.NameToLayer("Interactable");
 			CurrentItem = null;
 		}
@@ -47,6 +47,8 @@ namespace Project.Player
 			
 			RemoveItem(CurrentItem);
 		}
+
+		public override void Reset() => CurrentItem = null;
 		#endregion
 	}
 }

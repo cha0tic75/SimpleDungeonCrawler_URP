@@ -18,7 +18,7 @@ namespace Project
 
 		#region Public API:
 		public override void PerformEffect() => 
-                PersistentObjects.Instance.AudioSource.PlayOneShot(m_audioClip, m_volume);
+                GameManager.Instance.AudioSource.PlayOneShot(m_audioClip, m_volume);
 		#endregion
 	}
 }

@@ -21,14 +21,17 @@ namespace Project.Interaction
         #endregion
 
         #region Properties:
+        public Transform Transform { get; private set; }
         private Vector3 TeleportLocation => Transform.position + m_teleportOffset;
         #endregion
 
+        #region MonoBehaviour Callback Method(s):
 #if UNITY_EDITOR
         private void OnValidate()
         {
             if (m_spriteRenderer == null) { return; }
             m_spriteRenderer.color = m_color;
+            if (Transform == null) { Transform = transform; }
         }
         private void OnDrawGizmosSelected() 
         {
@@ -38,6 +41,9 @@ namespace Project.Interaction
             Gizmos.DrawWireSphere(TeleportLocation, 0.2f);
         }
 #endif
+
+        private void Awake() => Transform = transform;
+        #endregion
 
 		#region Public API:
 		public override void HandleInteraction(GameObject _interactor)

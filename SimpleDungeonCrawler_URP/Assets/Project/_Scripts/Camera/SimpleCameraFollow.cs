@@ -32,6 +32,7 @@ namespace Project.CameraSystem
 		#endregion
 
 		#region Public API:
+		public override void Reset() =>  Transform.position = new Vector3(m_targetTransform.position.x, m_targetTransform.position.y, Transform.position.z);
 		public void SetTargetTransform(Transform _targetTransform) => m_targetTransform = _targetTransform;
 		#endregion
 	}

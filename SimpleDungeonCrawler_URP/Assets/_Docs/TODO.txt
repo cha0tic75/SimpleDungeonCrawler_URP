@@ -1,5 +1,21 @@
 TODO:
 
+08/15/2022:
+    - I implemented a main menu and changed PersistentObjects to GameManager that now holds the current state of the game.
+      This required some refactoring.  For some reason when the game is "reset", not all objects are reset.
+      
+      I think a better approach would be to have 3 scenes: PersistentObjects, MainMenu, and GamePlay
+      - PersistentObjects: This scene will be the first scene loaded and will hold persistent stuff.
+                           (FadePanel, Camera, GameSceneManager* etc)
+      - MainMenu:          This scene will basically just hold a MainMenuUI
+      - GamePlay:          This will hold the Geometry, Player, Enemy, etc.
+                            There will need to be a HealthMonitor system in this scene
+                            that will tell the GameManager to switch states when they die!
+
+      * GameSceneManager will be responsible for loading the appropriate scenes as well as scene transition 
+        effects.
+
+
 08/14/2022:
     - There seems to be a bug in the sprint mechanic.  I was able to still sprint, even after releasing the button.
 

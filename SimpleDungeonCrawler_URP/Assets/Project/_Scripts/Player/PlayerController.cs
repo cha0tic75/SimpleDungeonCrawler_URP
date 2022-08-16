@@ -5,12 +5,14 @@
 // ######################################################################
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Project.CameraSystem;
 using UnityEngine;
 
 namespace Project.Player
 {
-    public class PlayerController : BaseEntity
+    public class PlayerController : BaseEntity, IResetable
 	{
 		#region Delegate(s):
 		public event Action OnItemInteractionEvent;
@@ -21,6 +23,7 @@ namespace Project.Player
 		[SerializeField] private PlayerAnimatorController m_animatorController;
 		[SerializeField] private PlayerSprintComponent m_sprintcomponent;
 		[SerializeField] private float m_sprintSpeedModifier = 1.4f;
+		[SerializeField] private BaseEffect_SO m_walkingEffect;
 		#endregion
 
 		#region Internal State Field(s):
@@ -34,15 +37,14 @@ namespace Project.Player
 		#region MonoBehaviour Callback Method(s):
 		private void Update()
 		{
+			if (GameManager.Instance.CurrentState != GameState.GamePlay) { return; }
+
 			m_movementInputVector.x = Input.GetAxisRaw("Horizontal");
 			m_movementInputVector.y = Input.GetAxisRaw("Vertical");
 
 			m_sprintcomponent.SetSprintInput(Input.GetKey(KeyCode.LeftShift));
 
 			if (Input.GetKeyDown(KeyCode.Space)) { OnItemInteractionEvent?.Invoke(); }
-
-			// Test Code: 
-			if (Input.GetKeyDown(KeyCode.Escape)) { CameraTools.Instance.CameraShaker.Shake(); }
 		}
 
 		private void FixedUpdate()
@@ -50,8 +52,9 @@ namespace Project.Player
 			// TODO: Use the Rigidbody to move instead of the transform
 			Vector3 movementVector = new Vector3(m_movementInputVector.x, m_movementInputVector.y, 0f).normalized;
 			Transform.position += movementVector * CurrentMoveSpeed * Time.deltaTime;
-			
-			m_animatorController?.SetMoveSpeed(movementVector.magnitude);
+			float movingSpeed = movementVector.magnitude;
+
+			m_animatorController?.SetMoveSpeed(movingSpeed);
 		}
 		#endregion
 	}

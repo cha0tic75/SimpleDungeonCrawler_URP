@@ -31,7 +31,7 @@ namespace Project.Interaction
 		{
 			if (RequireditemSO == null) 
 			{
-				Debug.LogError($"There is no Item associated with {Transform.name}"); 
+				Debug.LogError($"There is no Item associated with {transform.name}"); 
 				return; 
 			}
 			m_animator = GetComponent<Animator>();
@@ -54,10 +54,10 @@ namespace Project.Interaction
 				}
 			}
 		}
-		#endregion
+        #endregion
 
-		#region Internally Used Method(s):
-		private void SetExitState(bool _state)
+        #region Internally Used Method(s):
+        private void SetExitState(bool _state)
 		{
 			m_animator.SetBool(s_isOpenedBoolAnimParam, _state);
 		}

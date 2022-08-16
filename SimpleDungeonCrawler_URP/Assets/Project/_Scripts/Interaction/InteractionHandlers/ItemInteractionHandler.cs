@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Project.Interaction
 {
-    public class ItemInteractionHandler : BaseInteractionHandler
+    public class ItemInteractionHandler : BaseInteractionHandler, IResetable
 	{
 		#region Inspector Assigned Field(s):
 		[field: SerializeField] public Item_SO ItemSO { get; private set; }
@@ -31,6 +31,11 @@ namespace Project.Interaction
 			{
 				inventory.AddItem(this);
 			}
+		}
+
+		public void Reset()
+		{
+			gameObject.layer = LayerMask.NameToLayer("Interactable");
 		}
 		#endregion
 

@@ -19,7 +19,7 @@ namespace Project
 
 		#region Public API:
 		public override void PerformEffect() => 
-                PersistentObjects.Instance.CameraTools.CameraZoom.ZoomInOut(m_zoomValue, m_duration, m_delayBetween);
+                GameManager.Instance.CameraTools.CameraZoom.ZoomInOut(m_zoomValue, m_duration, m_delayBetween);
 		#endregion
 	}
 }

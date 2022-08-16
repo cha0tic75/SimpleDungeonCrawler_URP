@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Project.Interaction
 {
-    public class Interactable : MonoBehaviour, IInteractable
+    public class Interactable : TransformMonoBehaviour, IInteractable
 	{
 		#region Inspector Assigned Field(s):
 		[SerializeField] private List<BaseInteractionHandler> m_interactionHandlers;
@@ -34,6 +34,11 @@ namespace Project.Interaction
 				}
 			}
 		}
-		#endregion
-	}
+        public override void Reset()
+        {
+			Debug.Log($"{transform}: Reset()");
+            base.Reset();
+        }
+        #endregion
+    }
 }

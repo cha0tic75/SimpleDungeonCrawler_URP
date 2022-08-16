@@ -18,7 +18,7 @@ namespace Project
 
 		#region Public API:
 		public override void PerformEffect() => 
-                PersistentObjects.Instance.CameraTools.CameraShaker.Shake(m_shakeDuration, m_shakeMagnitude);
+                GameManager.Instance.CameraTools.CameraShaker.Shake(m_shakeDuration, m_shakeMagnitude);
 		#endregion
 	}
 }

@@ -23,11 +23,11 @@ namespace Project.CameraSystem
         #endregion
 
 		#region MonoBehaviour Callback Method(s):
-        private void Start() 
-        {
+		private void Start()
+		{
             if (m_mainCamera == null) { m_mainCamera = Camera.main; }
-            m_defaultOrthoValue = m_mainCamera.orthographicSize; 
-        }
+			m_defaultOrthoValue = m_mainCamera.orthographicSize;
+		}
 		#endregion
 
 		#region Public API:
@@ -39,10 +39,12 @@ namespace Project.CameraSystem
 
 			StartCoroutine(ZoomInOutCoroutine(zoomValue, duration, delayBetween));
 		}
-		#endregion
 
-		#region Coroutine(s):
-		private IEnumerator ZoomInOutCoroutine(float _endValue, float _duration, float _delayBetween)
+        public override void Reset() => m_mainCamera.orthographicSize = m_defaultOrthoValue;
+        #endregion
+
+        #region Coroutine(s):
+        private IEnumerator ZoomInOutCoroutine(float _endValue, float _duration, float _delayBetween)
 		{
 			m_mainCamera.orthographicSize = m_defaultOrthoValue; 
 			yield return LerpOrthoSizeToCoroutine(m_defaultOrthoValue, _endValue, _duration * 0.5f);
