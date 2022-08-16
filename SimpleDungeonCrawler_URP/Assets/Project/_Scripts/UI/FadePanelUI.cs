@@ -23,7 +23,7 @@ namespace Project.UI
 		#endregion
 
 		#region MonoBehaviour Callback Method(s):
-		private void Start() => m_canvasGroup = GetComponent<CanvasGroup>();
+		private void Awake() => m_canvasGroup = GetComponent<CanvasGroup>();
 		#endregion
 		
 		#region Public API:

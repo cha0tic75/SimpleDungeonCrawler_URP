@@ -5,22 +5,14 @@
 // ######################################################################
 
 using System;
-using System.Linq;
-using Project.Stats;
-using Project.Utility;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Project.Utility;
+using System.Collections;
 
 namespace Project
 {
-	public enum GameState
-	{
-		MainMenu, 
-		StartGame, 
-		GamePlay, 
-		Pause, 
-		Death,
-	}
-	public class GameManager : SingletonMonoBehaviour<GameManager>
+    public class GameManager : PersistentSinglonMonoBehaviour<GameManager>
 	{
 		#region Delegate(s):
 		public event Action<GameState> OnGameStateChangedEvent;
@@ -28,30 +20,19 @@ namespace Project
 
 		#region Inspector Assigned Field(s):
 		[field: SerializeField] public AudioSource AudioSource { get; private set; }
-		[field: SerializeField] public Stats.StatComponent PlayerHealth { get; private set; }
 		[field: SerializeField] public CameraSystem.CameraTools CameraTools { get; private set; }
 		[field: SerializeField] public ParticleAdmitter ParticleAdmitter { get; private set; }
 		[field: SerializeField] public UI.FadePanelUI FadePanelUI { get; private set; }
-		[field: SerializeField] public UI.MainMenuUI MainMenuUI { get; private set; }
 		[field: SerializeField] public GameObject PausePanelOverlay { get; private set; }
 		[field: SerializeField] public GameObject DeathPanelOverlay { get; private set; }
 		#endregion
 
 		#region Properties:
-		public GameState CurrentState { get; private set; }
+		public GameState CurrentState { get; private set; } = GameState.Unset;
 		#endregion
 
 		#region MonoBehaviour Callback Method(s):
-		private void OnEnable()
-		{
-			PlayerHealth.OnValueChangedEvent += PlayerHealth_OnValueChangedCallback;
-		}
-
-        private void Start()
-		{
-			if (AudioSource == null) { AudioSource = gameObject.AddComponent<AudioSource>(); }
-			ChangeState(GameState.MainMenu);
-		}
+        private void Start() => ChangeState(GameState.MainMenu);
 		#endregion
 
 		#region Public API:
@@ -66,10 +47,6 @@ namespace Project
 			{
 				case GameState.MainMenu:
 					MainMenuState();
-					break;
-					
-				case GameState.StartGame:
-					StartGameState();
 					break;
 
 				case GameState.GamePlay:
@@ -92,21 +69,17 @@ namespace Project
 		{
 			FadePanelUI.AlphaOverride(1f);
 			HideOverlayPanels();
-			MainMenuUI.SetMenuVisibility(true);
+			
+			LoadScene(SceneName.MenuScene);
 			FadePanelUI.FadeIn();
-		}
-
-		private void StartGameState()
-		{
-			ResetAll();
-			ChangeState(GameState.GamePlay);
 		}
 
 		private void GamePlayState()
 		{
 			FadePanelUI.FadeOut();
 			HideOverlayPanels();
-			MainMenuUI.SetMenuVisibility(false);
+
+			LoadScene(SceneName.GamePlayScene);
 			FadePanelUI.FadeIn();
 		}
 
@@ -117,19 +90,11 @@ namespace Project
 
 		private void DeathState()
 		{
-			FadePanelUI.FadeOut();
 			DeathPanelOverlay.SetActive(true);
-			MainMenuUI.SetMenuVisibility(true);
+			FadePanelUI.FadeOut();
+			
+			StartCoroutine(LoadSceneAfterTime(SceneName.MenuScene, 2f));
 			FadePanelUI.FadeIn();
-		}
-
-		private void ResetAll()
-		{
-			var resetables = FindObjectsOfType<MonoBehaviour>().OfType<IResetable>();
-			foreach(var resetable in resetables)
-			{
-				resetable.Reset();
-			}
 		}
 
 		private void HideOverlayPanels()
@@ -137,15 +102,16 @@ namespace Project
 			PausePanelOverlay.SetActive(false);
 			DeathPanelOverlay.SetActive(false);
 		}
+
+		private void LoadScene(SceneName _sceneName) => SceneManager.LoadScene((int)_sceneName);
 		#endregion
 
-		#region Callback(s):
-        private void PlayerHealth_OnValueChangedCallback(float _value, StatComponent _statComponent)
-        {
-            if (_statComponent.CurrentValue > 0f) { return; }
-
-			ChangeState(GameState.Death);
-        }
+		#region Coroutine(s):
+		private IEnumerator LoadSceneAfterTime(SceneName _sceneName, float _waitTime)
+		{
+			yield return HelperMethods.CustomWFS(_waitTime);
+			LoadScene(_sceneName);
+		}
 		#endregion
 	}
 }

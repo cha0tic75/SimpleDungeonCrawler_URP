@@ -35,6 +35,11 @@ namespace Project.Player
 		#endregion
 
 		#region MonoBehaviour Callback Method(s):
+		protected override void Awake()
+		{
+			base.Awake();
+			GameManager.Instance.CameraTools.CameraFollow.SetTargetTransform(Transform);
+		}
 		private void Update()
 		{
 			if (GameManager.Instance.CurrentState != GameState.GamePlay) { return; }

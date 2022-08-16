@@ -26,7 +26,7 @@ namespace Project.UI
 				SetInfoPanelVisibility(false);
 			}
 		}
-		public void OnPlayButtonClicked() => GameManager.Instance.ChangeState(GameState.StartGame);
+		public void OnPlayButtonClicked() => GameManager.Instance.ChangeState(GameState.GamePlay);
 		public void OnInfoButtonClicked() => SetInfoPanelVisibility(true);
 		public void OnBackButtonClicked() => SetInfoPanelVisibility(false);
 		public void OnExitButtonClicked()
