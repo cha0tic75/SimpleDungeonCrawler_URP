@@ -16,7 +16,7 @@ namespace Project
 		#region Inspector Assigned Field(s):
 		[SerializeField] private Transform m_enemyTransform;
 		[SerializeField] private float m_lerpDuration;
-		[SerializeField] private float m_idleTime;
+		[SerializeField] private MinMaxFloat m_idleTimeRange;
 		[SerializeField] private List<Transform> m_waypoints = new List<Transform>();
 		#endregion
 
@@ -25,32 +25,10 @@ namespace Project
 		#endregion
 
 		#region MonoBehaviour Callback Method(s):
-		private void OnEnable()
-		{
-			GameManager.Instance.OnGameStateChangedEvent += GameManager_OnGameStateChangedCallback;
-		}
-
-		private void OnDisable()
-		{
-			if (GameManager.Instance != null)
-			{
-				GameManager.Instance.OnGameStateChangedEvent -= GameManager_OnGameStateChangedCallback;
-			}
-		}
-		#endregion
-
-		#region Callback(s):
-        private void GameManager_OnGameStateChangedCallback(GameState _gameState)
-        {
-            if (_gameState == GameState.GamePlay)
-			{
-				m_moveCoroutine = StartCoroutine(MoveCoroutine());
-			}
-			else
-			{
-				HelperMethods.StopCoroutineIfRunning(ref m_moveCoroutine, this);
-			}
-        }
+		private void OnEnable() => 
+			m_moveCoroutine = StartCoroutine(MoveCoroutine());
+		private void OnDisable() => 
+			HelperMethods.StopCoroutineIfRunning(ref m_moveCoroutine, this);
 		#endregion
 
 		#region Coroutine(s):
@@ -60,8 +38,15 @@ namespace Project
 			{
 				for (int i = 0; i < m_waypoints.Count; i++ )
 				{
+					if (m_waypoints[i] == null)
+					{
+						yield return null;
+						continue;
+					}
+
 					yield return MoveToPoint(m_enemyTransform.position, m_waypoints[i].position);
-					yield return HelperMethods.CustomWFS(m_idleTime);
+
+					yield return HelperMethods.CustomWFS(m_idleTimeRange.GetRandomValueInRange());
 				}
 			}
 		}

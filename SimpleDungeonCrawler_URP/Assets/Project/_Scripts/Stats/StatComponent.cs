@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Project.Stats
 {
-    public class StatComponent : MonoBehaviour, IDamagable, IHealable, IResetable
+    public class StatComponent : MonoBehaviour, IDamagable, IHealable
 	{
 		#region Delegate(s):
 		public event Action<float, StatComponent> OnTakeDamageEvent;
@@ -20,22 +20,24 @@ namespace Project.Stats
 
 		#region Inspector Assigned Field(s):
 		[field: SerializeField] public StatType_SO StatType { get; private set; }
-        [SerializeField] private UI.StatMeterUI m_statMeter;
-		[field: SerializeField] public MinMaxFloat ValueRange { get; private set; } = new MinMaxFloat(0f, 10f);
 #if UNITY_EDITOR
 		[field: SerializeField, ReadOnly] 
 #endif
 		public float CurrentValue { get; protected set; }
+		[field: SerializeField] public MinMaxFloat ValueRange { get; private set; } = new MinMaxFloat(0f, 10f);
+        [SerializeField] private UI.StatMeterUI m_statMeter;
+		[SerializeField] private List<BaseEffect_SO> m_damageEffects = new List<BaseEffect_SO>();
         #endregion
 
 		#region Properties:
 		public float Percent => CurrentValue / (float)ValueRange.Max;
+		public GameObject GO => gameObject;
 		#endregion
 
         #region MonoBehaviour Callback Method(s):
         private void Start()
         {
-            Reset();
+            CurrentValue = ValueRange.Max;
 
             if (m_statMeter == null)
             {
@@ -51,13 +53,12 @@ namespace Project.Stats
 			AlterCurrentValue(-_consumeAmount);
 			if (_consumeType == ConsumeType.Damage)
 			{
+				m_damageEffects.ForEach(de => de.PerformEffect(gameObject));
 				OnTakeDamageEvent?.Invoke(_consumeAmount, this);
 			}
 		}
 
         public virtual void Apply(float _applyAmount) => AlterCurrentValue(_applyAmount);
-
-		public void Reset() => CurrentValue = ValueRange.Max;
         #endregion
 
 		#region Internally Used Method(s):

@@ -12,7 +12,7 @@ namespace Project.Damage
 		public override void HandleOnEnterDamage(IDamagable _damagable)
 		{
 			_damagable.Consume(m_damageRange.GetRandomValueInRange(), ConsumeType.Damage);
-			m_damageEffects.ForEach(de => de.PerformEffect());
+			m_damageEffects.ForEach(de => de.PerformEffect(_damagable.GO));
 		} 
         #endregion
     }

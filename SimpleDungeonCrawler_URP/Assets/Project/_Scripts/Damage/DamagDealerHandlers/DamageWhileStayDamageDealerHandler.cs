@@ -63,7 +63,7 @@ namespace Project.Damage
 				foreach (var damagable in m_damagables.ToList())
 				{
 					damagable.Consume(m_damageRange.GetRandomValueInRange(), ConsumeType.Damage);
-					yield return PlayDamageEffects();
+					yield return PlayDamageEffects(damagable.GO);
 					yield return null;
 				}
 				yield return HelperMethods.CustomWFS(m_damageFrequency);
@@ -71,11 +71,11 @@ namespace Project.Damage
 
 			m_damageCoroutine = null;
 		}
-		private IEnumerator PlayDamageEffects()
+		private IEnumerator PlayDamageEffects(GameObject _gameObject)
 		{
 			foreach (var damageEffect in m_damageEffects)
 			{
-				damageEffect?.PerformEffect();
+				damageEffect?.PerformEffect(_gameObject);
 				yield return null;
 			}
 		}

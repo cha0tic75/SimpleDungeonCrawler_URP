@@ -39,8 +39,6 @@ namespace Project.CameraSystem
 
 			StartCoroutine(ZoomInOutCoroutine(zoomValue, duration, delayBetween));
 		}
-
-        public override void Reset() => m_mainCamera.orthographicSize = m_defaultOrthoValue;
         #endregion
 
         #region Coroutine(s):

@@ -11,7 +11,7 @@ namespace Project
     public abstract class BaseEffect_SO : ScriptableObject
 	{	
 		#region Public API:
-		public abstract void PerformEffect();
+		public abstract void PerformEffect(GameObject _gameObject);
 		#endregion
 	}
 }

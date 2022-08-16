@@ -15,18 +15,28 @@ namespace Project.CameraSystem
 		[SerializeField] private float m_smoothness = 10f;
 		#endregion
 
+		#region Properties:
+		private Vector3 DesiredPosition => (m_targetTransform != null) ?
+				new Vector3(m_targetTransform.position.x, m_targetTransform.position.y, Transform.position.z) :
+				Transform.position;
+		#endregion
+
 		#region MonoBehaviour Callback Method(s):
 		private void FixedUpdate()
 		{
 			if (m_targetTransform == null) { return; }
-			Vector3 desiredPosition = new Vector3(m_targetTransform.position.x, m_targetTransform.position.y, Transform.position.z);
-			Transform.position = Vector3.Lerp(Transform.position, desiredPosition, m_smoothness * Time.deltaTime);
+
+			Transform.position = Vector3.Lerp(Transform.position, DesiredPosition, m_smoothness * Time.deltaTime);
 		}
 		#endregion
 
 		#region Public API:
-		public override void Reset() =>  Transform.position = new Vector3(m_targetTransform.position.x, m_targetTransform.position.y, Transform.position.z);
-		public void SetTargetTransform(Transform _targetTransform) => m_targetTransform = _targetTransform;
+		public void SetTargetTransform(Transform _targetTransform, bool _snapToTarget = false)
+		{
+			m_targetTransform = _targetTransform;
+
+			if (_snapToTarget){ Transform.position = DesiredPosition; }
+		}
 		#endregion
 	}
 }

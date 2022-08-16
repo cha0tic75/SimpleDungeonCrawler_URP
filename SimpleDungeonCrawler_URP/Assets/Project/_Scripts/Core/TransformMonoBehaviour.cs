@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Project
 {
-    public abstract class TransformMonoBehaviour : MonoBehaviour, IResetable
+    public abstract class TransformMonoBehaviour : MonoBehaviour
 	{
         #region Properties:
 		public Transform Transform { get; protected set; }
@@ -24,10 +24,6 @@ namespace Project
             Transform = transform;
             m_initialPosition = Transform.position;
         }
-        #endregion
-
-        #region Public API:
-        public virtual void Reset() => Transform.position = m_initialPosition;
         #endregion
 	}
 }

@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Project.Player
 {
-    public class PlayerInventory : TransformMonoBehaviour, IResetable
+    public class PlayerInventory : TransformMonoBehaviour
 	{
 		#region Inspector Assigned Field(s):
 		[field: SerializeField, ReadOnly] public ItemInteractionHandler CurrentItem { get; private set;} = null;
@@ -47,8 +47,6 @@ namespace Project.Player
 			
 			RemoveItem(CurrentItem);
 		}
-
-		public override void Reset() => CurrentItem = null;
 		#endregion
 	}
 }

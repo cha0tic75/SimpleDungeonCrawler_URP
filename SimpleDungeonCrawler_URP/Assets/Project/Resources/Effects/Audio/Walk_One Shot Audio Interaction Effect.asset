@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48b0c2793ef54940ac04efd58524213, type: 3}
   m_Name: Walk_One Shot Audio Interaction Effect
   m_EditorClassIdentifier: 
-  m_audioClip: {fileID: 8300000, guid: 3703f4adb0d51094dac48c0af826af36, type: 3}
-  m_volume: 0.25
+  <AudioClip>k__BackingField: {fileID: 8300000, guid: 3703f4adb0d51094dac48c0af826af36, type: 3}
+  m_volume: 0.15

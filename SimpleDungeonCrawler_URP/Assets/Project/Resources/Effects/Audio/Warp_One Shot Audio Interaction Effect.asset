@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48b0c2793ef54940ac04efd58524213, type: 3}
   m_Name: Warp_One Shot Audio Interaction Effect
   m_EditorClassIdentifier: 
-  m_audioClip: {fileID: 8300000, guid: c0b7c4234fdb73f40b42eba54764d875, type: 3}
+  <AudioClip>k__BackingField: {fileID: 8300000, guid: c0b7c4234fdb73f40b42eba54764d875, type: 3}
   m_volume: 0.25

@@ -1,17 +1,19 @@
 // ######################################################################
-// PlayerDeathNotifier - Script description goes here
+// PlayerDeathHandler - Script description goes here
 //
 // Written by Tim McCune <tim.mccune1975@gmail.com>
 // ######################################################################
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Project.Stats
 {
-    public class PlayerDeathNotifier : MonoBehaviour
+    public class PlayerDeathHandler : TransformMonoBehaviour
 	{
 		#region Inspector Assigned Field(s):
 		[SerializeField] private StatComponent m_playerHealth;
+		[SerializeField] private List<BaseEffect_SO> m_deathEffects;
 		#endregion
 
 		#region MonoBehaviour Callback Method(s):
@@ -19,7 +21,7 @@ namespace Project.Stats
 		{
 			if (m_playerHealth == null)
 			{
-				Debug.LogWarning("PlayerDeathNotifier is missing a reference to playerHealth StatComponent");
+				Debug.LogWarning("PlayerDeathHandler is missing a reference to playerHealth StatComponent");
 				Destroy(this);
 				return;
 			}
@@ -30,13 +32,15 @@ namespace Project.Stats
 		private void OnDisable()
 		{
 			if (m_playerHealth == null) { return; }
-			m_playerHealth.OnTakeDamageEvent += PlayerHealth_OnTakeDamageCallback;
+			m_playerHealth.OnTakeDamageEvent -= PlayerHealth_OnTakeDamageCallback;
 		}
 
         private void PlayerHealth_OnTakeDamageCallback(float _amount, StatComponent _statComponent)
         {
             if (_statComponent.CurrentValue > 0) { return; }
 
+			m_deathEffects.ForEach(de => de.PerformEffect(gameObject));
+			Transform.gameObject.SetActive(false);
 			GameManager.Instance.ChangeState(GameState.Death);
         }
         #endregion

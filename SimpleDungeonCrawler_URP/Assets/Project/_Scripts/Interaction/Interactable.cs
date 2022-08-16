@@ -23,7 +23,7 @@ namespace Project.Interaction
 		#region Public API:
 		public void Interact(GameObject _interactor)
 		{
-			m_interactionEffects.ForEach(ie => ie.PerformEffect());
+			m_interactionEffects.ForEach(ie => ie.PerformEffect(gameObject));
 
 			for (int i = 0; i < m_interactionHandlers.Count; i++)
 			{
@@ -34,11 +34,6 @@ namespace Project.Interaction
 				}
 			}
 		}
-        public override void Reset()
-        {
-			Debug.Log($"{transform}: Reset()");
-            base.Reset();
-        }
         #endregion
     }
 }

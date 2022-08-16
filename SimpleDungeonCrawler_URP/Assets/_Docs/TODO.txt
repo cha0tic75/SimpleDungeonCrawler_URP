@@ -1,5 +1,13 @@
 TODO:
 
+08/16/2022:
+    - The game is split into 3 scenes:  StartScene, MenuScene, GamePlayScene.  All transitions are working great.
+    - I created a new section 6 (Which can be the "boss" round)  I am thinking the player needs to survive in the 
+      "Arena" for X seconds then a door will open and they can escape and win the game.
+    - I added a concept of Enemy and scattered them around the world.
+      NOTE: I still need to add them to Section 4, 5, and 6(Boss arena)
+
+
 08/15/2022:
     - I implemented a main menu and changed PersistentObjects to GameManager that now holds the current state of the game.
       This required some refactoring.  For some reason when the game is "reset", not all objects are reset.

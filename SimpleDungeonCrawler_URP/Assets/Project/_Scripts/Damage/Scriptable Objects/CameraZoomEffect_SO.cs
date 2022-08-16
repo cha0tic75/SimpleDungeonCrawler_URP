@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Project
 {
-    [CreateAssetMenu(menuName = "SO/Effects/Camera Zoom Effect")]
+    [CreateAssetMenu(menuName = "SO/Effects/Camera Zoom Effect", fileName = "New Camera Zoom Effect")]
 	public class CameraZoomEffect_SO : BaseEffect_SO
 	{
 		#region Inspector Assigned Field(s):
@@ -18,7 +18,7 @@ namespace Project
 		#endregion
 
 		#region Public API:
-		public override void PerformEffect() => 
+		public override void PerformEffect(GameObject _gameObject) => 
                 GameManager.Instance.CameraTools.CameraZoom.ZoomInOut(m_zoomValue, m_duration, m_delayBetween);
 		#endregion
 	}

@@ -5,14 +5,12 @@
 // ######################################################################
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using Project.CameraSystem;
+using System.Collections;
 using UnityEngine;
 
 namespace Project.Player
 {
-    public class PlayerController : BaseEntity, IResetable
+    public class PlayerController : BaseEntity
 	{
 		#region Delegate(s):
 		public event Action OnItemInteractionEvent;
@@ -23,23 +21,30 @@ namespace Project.Player
 		[SerializeField] private PlayerAnimatorController m_animatorController;
 		[SerializeField] private PlayerSprintComponent m_sprintcomponent;
 		[SerializeField] private float m_sprintSpeedModifier = 1.4f;
-		[SerializeField] private BaseEffect_SO m_walkingEffect;
+		[SerializeField] private PlayOneShotAudioEffect_SO m_walkingEffect;
 		#endregion
 
 		#region Internal State Field(s):
+		private Coroutine m_footStepsAudioCoroutine = null;
 		private Vector2 m_movementInputVector = Vector2.zero;
+		private Vector3 m_movementVector = Vector3.zero;
         #endregion
 
         #region Properties:
         private float CurrentMoveSpeed => m_moveSpeed * ((m_sprintcomponent.IsSprinting) ? m_sprintSpeedModifier : 1f);
+		private float MoveSpeedMagnitude => m_movementVector.magnitude;
 		#endregion
 
 		#region MonoBehaviour Callback Method(s):
 		protected override void Awake()
 		{
 			base.Awake();
-			GameManager.Instance.CameraTools.CameraFollow.SetTargetTransform(Transform);
+			GameManager.Instance.CameraTools.CameraFollow.SetTargetTransform(Transform, true);
 		}
+		private void OnEnable() => m_footStepsAudioCoroutine = StartCoroutine(FootStepsAudioCoroutine());
+		private void OnDisable() => HelperMethods.StopCoroutineIfRunning(ref m_footStepsAudioCoroutine, this);
+
+
 		private void Update()
 		{
 			if (GameManager.Instance.CurrentState != GameState.GamePlay) { return; }
@@ -55,11 +60,30 @@ namespace Project.Player
 		private void FixedUpdate()
 		{
 			// TODO: Use the Rigidbody to move instead of the transform
-			Vector3 movementVector = new Vector3(m_movementInputVector.x, m_movementInputVector.y, 0f).normalized;
-			Transform.position += movementVector * CurrentMoveSpeed * Time.deltaTime;
-			float movingSpeed = movementVector.magnitude;
+			m_movementVector = new Vector3(m_movementInputVector.x, m_movementInputVector.y, 0f).normalized;
+			Transform.position += m_movementVector * CurrentMoveSpeed * Time.deltaTime;
 
-			m_animatorController?.SetMoveSpeed(movingSpeed);
+			m_animatorController?.SetMoveSpeed(MoveSpeedMagnitude);
+		}
+		#endregion
+
+		#region Coroutine(s):
+		private IEnumerator FootStepsAudioCoroutine()
+		{
+			float clipLength = m_walkingEffect.AudioClip.length;
+			while (true)
+			{
+				if(MoveSpeedMagnitude > 0)
+				{
+					m_walkingEffect.PerformEffect(gameObject);
+					yield return HelperMethods.CustomWFS(clipLength);
+				}
+				else
+				{
+					yield return null;
+				}
+
+			}
 		}
 		#endregion
 	}

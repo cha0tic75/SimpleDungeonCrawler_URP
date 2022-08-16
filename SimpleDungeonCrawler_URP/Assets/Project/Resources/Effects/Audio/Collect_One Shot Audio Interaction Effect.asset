@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48b0c2793ef54940ac04efd58524213, type: 3}
   m_Name: Collect_One Shot Audio Interaction Effect
   m_EditorClassIdentifier: 
-  m_audioClip: {fileID: 8300000, guid: 93a6f42c58c11f14196192fa01cd8773, type: 3}
+  <AudioClip>k__BackingField: {fileID: 8300000, guid: 93a6f42c58c11f14196192fa01cd8773, type: 3}
   m_volume: 1

@@ -5,17 +5,14 @@
 // ######################################################################
 
 using Project.Stats;
+using UnityEngine;
 
 namespace Project
 {
-	public enum ConsumeType
-	{
-		Damage, 
-		Use
-	}
     public interface IDamagable
 	{
 		StatType_SO StatType { get; }
+		GameObject GO { get; }
 
 		void Consume(float _damageAmount, ConsumeType _consumeType);
 	}

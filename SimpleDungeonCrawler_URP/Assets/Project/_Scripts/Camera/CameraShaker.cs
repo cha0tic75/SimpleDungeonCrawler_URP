@@ -25,12 +25,6 @@ namespace Project.CameraSystem
 
 			StartCoroutine(ShakeCoroutine(duration, magnitude));
 		}
-
-        public override void Reset()
-		{
-			StopAllCoroutines();
-			Transform.localPosition = Vector3.zero;
-		}
         #endregion
 
         #region Coroutine(s):

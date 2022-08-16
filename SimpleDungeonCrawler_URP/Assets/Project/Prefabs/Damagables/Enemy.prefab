@@ -92,7 +92,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5357234798609545799}
-  - {fileID: 7444419739656319904}
   - {fileID: 1327371214270765220}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -111,7 +110,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enemyTransform: {fileID: 5357234798609545799}
   m_lerpDuration: 2
-  m_idleTime: 2
+  m_idleTimeRange:
+    <Min>k__BackingField: 1
+    <Max>k__BackingField: 2
   m_waypoints:
   - {fileID: 1047868165314238622}
   - {fileID: 1047868163726002772}
@@ -146,7 +147,7 @@ Transform:
   - {fileID: 1047868165314238622}
   - {fileID: 1047868163726002772}
   m_Father: {fileID: 1047868165400054456}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7356532836518317438
 GameObject:
@@ -172,12 +173,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7356532836518317438}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1047868165400054456}
+  m_Father: {fileID: 5357234798609545799}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5075404085286539409

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Project
 {
-    [CreateAssetMenu(menuName = "SO/Effects/Camera Shake Effect")]
+    [CreateAssetMenu(menuName = "SO/Effects/Camera Shake Effect", fileName = "New Camera Shake Effect")]
 	public class CameraShakeEffect_SO : BaseEffect_SO
 	{
 		#region Inspector Assigned Field(s):
@@ -17,7 +17,7 @@ namespace Project
 		#endregion
 
 		#region Public API:
-		public override void PerformEffect() => 
+		public override void PerformEffect(GameObject _gameObject) => 
                 GameManager.Instance.CameraTools.CameraShaker.Shake(m_shakeDuration, m_shakeMagnitude);
 		#endregion
 	}

@@ -35,12 +35,27 @@ namespace Project.UI
 			m_currentFadeCoroutine = StartCoroutine(LerpCanvasGroupToCoroutine(0f, 1f, (_duration > 0f) ? _duration : m_defaultDuration));
 		}
 
+		public IEnumerator FadeOutCoroutine(float _duration = 0f)
+		{
+			StopCoroutineIfRunning();
+
+			yield return StartCoroutine(LerpCanvasGroupToCoroutine(0f, 1f, (_duration > 0f) ? _duration : m_defaultDuration));
+		}
+
 		public void FadeIn(float _duration = 0f)
 		{
 			StopCoroutineIfRunning();
 
 			m_currentFadeCoroutine = StartCoroutine(LerpCanvasGroupToCoroutine(1f, 0f, (_duration > 0f) ? _duration : m_defaultDuration));
 		}
+
+		public IEnumerator FadeInCoroutine(float _duration = 0f)
+		{
+			StopCoroutineIfRunning();
+
+			yield return StartCoroutine(LerpCanvasGroupToCoroutine(1f, 0f, (_duration > 0f) ? _duration : m_defaultDuration));
+		}
+
 
 		public void FadeInOut(float _duration = 0f, float _delayBetween = 0f)
 		{

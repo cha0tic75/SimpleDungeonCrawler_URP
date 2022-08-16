@@ -14,14 +14,17 @@ namespace Project
 {
     public class GameManager : PersistentSinglonMonoBehaviour<GameManager>
 	{
+		#region Constant(s):
+		private const float DELAY_BEFORE_FADE_ON_DEATH = 2f;
+		#endregion
+
 		#region Delegate(s):
 		public event Action<GameState> OnGameStateChangedEvent;
 		#endregion
 
 		#region Inspector Assigned Field(s):
-		[field: SerializeField] public AudioSource AudioSource { get; private set; }
+		[field: SerializeField] public AudioSource OneShotAudioSource { get; private set; }
 		[field: SerializeField] public CameraSystem.CameraTools CameraTools { get; private set; }
-		[field: SerializeField] public ParticleAdmitter ParticleAdmitter { get; private set; }
 		[field: SerializeField] public UI.FadePanelUI FadePanelUI { get; private set; }
 		[field: SerializeField] public GameObject PausePanelOverlay { get; private set; }
 		[field: SerializeField] public GameObject DeathPanelOverlay { get; private set; }
@@ -88,14 +91,7 @@ namespace Project
 			PausePanelOverlay.SetActive(true);
 		}
 
-		private void DeathState()
-		{
-			DeathPanelOverlay.SetActive(true);
-			FadePanelUI.FadeOut();
-			
-			StartCoroutine(LoadSceneAfterTime(SceneName.MenuScene, 2f));
-			FadePanelUI.FadeIn();
-		}
+		private void DeathState() => StartCoroutine(HandleDeathCoroutine());
 
 		private void HideOverlayPanels()
 		{
@@ -107,6 +103,17 @@ namespace Project
 		#endregion
 
 		#region Coroutine(s):
+		private IEnumerator HandleDeathCoroutine()
+		{
+			DeathPanelOverlay.SetActive(true);
+			yield return HelperMethods.CustomWFS(DELAY_BEFORE_FADE_ON_DEATH);
+			
+			yield return FadePanelUI.FadeOutCoroutine(2f);
+			
+			yield return LoadSceneAfterTime(SceneName.MenuScene, 1f);
+			DeathPanelOverlay.SetActive(false);
+			yield return FadePanelUI.FadeInCoroutine(2f);
+		}
 		private IEnumerator LoadSceneAfterTime(SceneName _sceneName, float _waitTime)
 		{
 			yield return HelperMethods.CustomWFS(_waitTime);
