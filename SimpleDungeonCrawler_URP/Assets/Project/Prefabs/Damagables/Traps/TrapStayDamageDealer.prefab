@@ -35,6 +35,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrapStayDamageDealer
       objectReference: {fileID: 0}
+    - target: {fileID: 998767950053260020, guid: 1ff6bf29e1ec0ca4dbf5226b82ab409b, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 998767950335655309, guid: 1ff6bf29e1ec0ca4dbf5226b82ab409b, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ff6bf29e1ec0ca4dbf5226b82ab409b, type: 3}
 --- !u!1 &2998062960390967467 stripped
@@ -58,12 +66,6 @@ MonoBehaviour:
   m_damageRange:
     <Min>k__BackingField: 1
     <Max>k__BackingField: 1
-  m_audiosource: {fileID: 2998062960390967469}
   m_damageEffects:
   - {fileID: 11400000, guid: a80dcdecd94b3274fadd3c6983809b48, type: 2}
   m_damageFrequency: 0.5
---- !u!82 &2998062960390967469 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 998767950053260018, guid: 1ff6bf29e1ec0ca4dbf5226b82ab409b, type: 3}
-  m_PrefabInstance: {fileID: 2614080409853766239}
-  m_PrefabAsset: {fileID: 0}

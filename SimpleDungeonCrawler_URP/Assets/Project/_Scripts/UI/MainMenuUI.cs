@@ -22,7 +22,7 @@ namespace Project.UI
 		#endregion
 
 		#region Public API:
-		public void OnPlayButtonClicked() => GameManager.Instance.ChangeState(GameState.GamePlay);
+		public void OnPlayButtonClicked() => GameManager.Instance.ChangeGameState(GameState.GamePlay);
 		public void OnInfoButtonClicked() => SetInfoPanelVisibility(true);
 		public void OnBackButtonClicked() => SetInfoPanelVisibility(false);
 		public void OnExitButtonClicked()

@@ -1,5 +1,20 @@
 TODO:
 
+08/17/2022:
+     TODO: There are two new triggers added to the game: Arena Timer and GameCompletedPad
+           These should be refactored to use some form of the existing Interation framework.
+           Perhaps what ever the Traps are using!
+
+           Test the game to make sure it can be completed
+
+    - I refactored the GameManager to use a statemachine like approach. Moving all the individual state logic
+      into their own simple class that derives from GameStateBehaviour.
+
+    - Finished adding the monsters and traps into the game that I wanted.
+    - Added an arena type mechanic that will drop a key in a random location.
+      The player will need to run around and find it, to open the door to exit the arena and complete the game.
+      NOTE: This has not been tested yet!
+
 08/16/2022:
     - The game is split into 3 scenes:  StartScene, MenuScene, GamePlayScene.  All transitions are working great.
     - I created a new section 6 (Which can be the "boss" round)  I am thinking the player needs to survive in the 

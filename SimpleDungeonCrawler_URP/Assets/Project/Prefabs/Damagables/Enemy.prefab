@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1047868165400054456}
   - component: {fileID: 1047868165400054459}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,6 +297,10 @@ PrefabInstance:
     - target: {fileID: 4636721678062991015, guid: 1b2f08014c8510146a61a8433b8eb8c8, type: 3}
       propertyPath: m_Name
       value: DamageEntity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636721678062991015, guid: 1b2f08014c8510146a61a8433b8eb8c8, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4959164820392593546, guid: 1b2f08014c8510146a61a8433b8eb8c8, type: 3}
       propertyPath: m_RootOrder

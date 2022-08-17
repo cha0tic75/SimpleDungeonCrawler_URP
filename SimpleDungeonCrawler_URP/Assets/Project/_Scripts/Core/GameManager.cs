@@ -6,18 +6,13 @@
 
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Project.Utility;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Project
 {
     public class GameManager : PersistentSinglonMonoBehaviour<GameManager>
 	{
-		#region Constant(s):
-		private const float DELAY_BEFORE_FADE_ON_DEATH = 2f;
-		#endregion
-
 		#region Delegate(s):
 		public event Action<GameState> OnGameStateChangedEvent;
 		#endregion
@@ -28,96 +23,51 @@ namespace Project
 		[field: SerializeField] public UI.FadePanelUI FadePanelUI { get; private set; }
 		[field: SerializeField] public GameObject PausePanelOverlay { get; private set; }
 		[field: SerializeField] public GameObject DeathPanelOverlay { get; private set; }
+		[field: SerializeField] public GameObject WinPanelOverlay { get; private set; }
 		#endregion
 
 		#region Properties:
 		public GameState CurrentState { get; private set; } = GameState.Unset;
-		#endregion
+		private Dictionary<GameState, GameStateBehaviour> m_gameStateBehaviourDictionary;
+        #endregion
 
-		#region MonoBehaviour Callback Method(s):
-        private void Start() => ChangeState(GameState.MainMenu);
+        #region MonoBehaviour Callback Method(s):
+        protected override void Awake()
+        {
+            base.Awake();
+			CreateGameStateBehaviourDictionary();
+        }
+        private void Start() => ChangeGameState(GameState.MainMenu);
 		#endregion
 
 		#region Public API:
-		public void ChangeState(GameState _newGameState)
+		public void ChangeGameState(GameState _newGameState)
 		{
-			if (_newGameState == CurrentState) { return; }
+			if (_newGameState == CurrentState || !m_gameStateBehaviourDictionary.ContainsKey(_newGameState)) { return; }
 			CurrentState = _newGameState;
-
-			OnGameStateChangedEvent?.Invoke(CurrentState);
-
-			switch(CurrentState)
-			{
-				case GameState.MainMenu:
-					MainMenuState();
-					break;
-
-				case GameState.GamePlay:
-					GamePlayState();
-					break;
-
-				case GameState.Pause:
-					PauseState();
-					break;
-
-				case GameState.Death:
-					DeathState();
-					break;
-			}
+			m_gameStateBehaviourDictionary[CurrentState].Perform();
+			OnGameStateChangedEvent?.Invoke(_newGameState);
 		}
 		#endregion
 
 		#region Internally Used Method(s):
-		private void MainMenuState()
+		private void CreateGameStateBehaviourDictionary()
 		{
-			FadePanelUI.AlphaOverride(1f);
-			HideOverlayPanels();
-			
-			LoadScene(SceneName.MenuScene);
-			FadePanelUI.FadeIn();
-		}
+			m_gameStateBehaviourDictionary = new Dictionary<GameState, GameStateBehaviour>()
+			{
+				{ GameState.MainMenu, new BasicLoadSceneGameStateBehaviour(SceneName.MenuScene, HideOverlayPanels) }, 
+				{ GameState.GamePlay, new BasicLoadSceneGameStateBehaviour(SceneName.GamePlayScene, HideOverlayPanels) }, 
+				{ GameState.Death, new CoroutineLoadSceneGameStateBehaviour(SceneName.MenuScene, DeathPanelOverlay) }, 
+				{ GameState.Win, new CoroutineLoadSceneGameStateBehaviour(SceneName.MenuScene, DeathPanelOverlay) },
+				{ GameState.Pause, new PauseGameStateBehaviour() }, 
+			};
 
-		private void GamePlayState()
-		{
-			FadePanelUI.FadeOut();
-			HideOverlayPanels();
-
-			LoadScene(SceneName.GamePlayScene);
-			FadePanelUI.FadeIn();
-		}
-
-		private void PauseState()
-		{
-			PausePanelOverlay.SetActive(true);
-		}
-
-		private void DeathState() => StartCoroutine(HandleDeathCoroutine());
-
-		private void HideOverlayPanels()
-		{
-			PausePanelOverlay.SetActive(false);
-			DeathPanelOverlay.SetActive(false);
-		}
-
-		private void LoadScene(SceneName _sceneName) => SceneManager.LoadScene((int)_sceneName);
-		#endregion
-
-		#region Coroutine(s):
-		private IEnumerator HandleDeathCoroutine()
-		{
-			DeathPanelOverlay.SetActive(true);
-			yield return HelperMethods.CustomWFS(DELAY_BEFORE_FADE_ON_DEATH);
-			
-			yield return FadePanelUI.FadeOutCoroutine(2f);
-			
-			yield return LoadSceneAfterTime(SceneName.MenuScene, 1f);
-			DeathPanelOverlay.SetActive(false);
-			yield return FadePanelUI.FadeInCoroutine(2f);
-		}
-		private IEnumerator LoadSceneAfterTime(SceneName _sceneName, float _waitTime)
-		{
-			yield return HelperMethods.CustomWFS(_waitTime);
-			LoadScene(_sceneName);
+			void HideOverlayPanels()
+			{
+				PausePanelOverlay.SetActive(false);
+				DeathPanelOverlay.SetActive(false);
+				WinPanelOverlay.SetActive(false);
+			}
 		}
 		#endregion
 	}

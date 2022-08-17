@@ -41,7 +41,7 @@ namespace Project.Stats
 
 			m_deathEffects.ForEach(de => de.PerformEffect(gameObject));
 			Transform.gameObject.SetActive(false);
-			GameManager.Instance.ChangeState(GameState.Death);
+			GameManager.Instance.ChangeGameState(GameState.Death);
         }
         #endregion
     }
