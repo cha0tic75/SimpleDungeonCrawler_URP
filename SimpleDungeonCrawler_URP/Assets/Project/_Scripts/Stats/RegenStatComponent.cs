@@ -5,6 +5,8 @@
 // ######################################################################
 
 using UnityEngine;
+using Project.Actors.Player;
+using System;
 
 namespace Project.Stats
 {
@@ -18,9 +20,18 @@ namespace Project.Stats
 
         #region Internal State Field(s):
         private float m_lastConsumeCurrentValueTime;
+        private bool m_isMovementInput = false;
         #endregion
 
         #region MonoBehaviour Callback Method(s):
+        private void OnEnable() => 
+            PlayerInputManager.Instance.OnMovementInputEvent += InputManager_OnMoveInputCallback;
+        private void OnDisable()
+        {
+            if (PlayerInputManager.Instance == null) { return; }
+            PlayerInputManager.Instance.OnMovementInputEvent -= InputManager_OnMoveInputCallback;
+        }
+
         private void Update() => AttemptRegeneration();
         #endregion
 
@@ -35,6 +46,10 @@ namespace Project.Stats
         #region Internally Used Method(s):
         private void AttemptRegeneration()
         {
+            if (m_isMovementInput)
+            { 
+                m_lastConsumeCurrentValueTime = Time.time;
+            }
             if (Time.time >  m_regenAfterWaitTime + m_lastConsumeCurrentValueTime)
             {
                 if (CurrentValue < ValueRange.Max)
@@ -43,6 +58,11 @@ namespace Project.Stats
                 }
             }
         }
+        #endregion
+
+        #region Callback(s):
+        private void InputManager_OnMoveInputCallback(Vector2 _movementInput) => 
+            m_isMovementInput = !(_movementInput == Vector2.zero);
         #endregion
     }
 }

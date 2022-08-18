@@ -5,7 +5,7 @@
 // ######################################################################
 
 using Project.Items;
-using Project.Player;
+using Project.Actors.Player;
 using UnityEngine;
 
 namespace Project.Interaction

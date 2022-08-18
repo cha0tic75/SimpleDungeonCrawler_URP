@@ -58,7 +58,7 @@ namespace Project
 				{ GameState.MainMenu, new BasicLoadSceneGameStateBehaviour(SceneName.MenuScene, HideOverlayPanels) }, 
 				{ GameState.GamePlay, new BasicLoadSceneGameStateBehaviour(SceneName.GamePlayScene, HideOverlayPanels) }, 
 				{ GameState.Death, new CoroutineLoadSceneGameStateBehaviour(SceneName.MenuScene, DeathPanelOverlay) }, 
-				{ GameState.Win, new CoroutineLoadSceneGameStateBehaviour(SceneName.MenuScene, DeathPanelOverlay) },
+				{ GameState.Win, new CoroutineLoadSceneGameStateBehaviour(SceneName.MenuScene, WinPanelOverlay) },
 				{ GameState.Pause, new PauseGameStateBehaviour() }, 
 			};
 

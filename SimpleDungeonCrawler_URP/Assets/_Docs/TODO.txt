@@ -1,6 +1,9 @@
 TODO:
 
 08/17/2022:
+    TODO: Add another Scene called Credits and on the Win GameState transfer to that. then after time,
+          this scene will tell the GameManager to transfer to the MainMenu
+
     There may be an issue with the sprint mechanic after switching to the new input system
 
 	 TODO: Add Animations to the Enemy.

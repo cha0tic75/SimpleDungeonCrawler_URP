@@ -6,7 +6,7 @@
 
 using UnityEngine;
 using Project.Items;
-using Project.Player;
+using Project.Actors.Player;
 
 namespace Project.Interaction
 {

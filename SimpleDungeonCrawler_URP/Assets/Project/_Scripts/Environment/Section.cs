@@ -14,6 +14,7 @@ namespace Project
 	{
 		#region Inspector Assigned Field(s):
 		[SerializeField] private int m_sectionNumber;
+		[SerializeField] private bool m_shouldChangeStateOnTrigger = true;
 		[SerializeField] private List<GameObject> m_activeOnEnterGos;
 		#endregion
 
@@ -28,7 +29,11 @@ namespace Project
 		#endregion
 
 		#region Internally Used Method(s):
-		private void SetActiveState(bool _state) => m_activeOnEnterGos.ForEach(x => x.SetActive(_state));
+		private void SetActiveState(bool _state)
+		{
+			if (!m_shouldChangeStateOnTrigger) { return; }
+			m_activeOnEnterGos.ForEach(x => x.SetActive(_state));
+		}
 		#endregion
 	}
 }

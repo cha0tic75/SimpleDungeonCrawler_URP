@@ -4,7 +4,7 @@
 // Written by Tim McCune <tim.mccune1975@gmail.com>
 // ######################################################################
 
-using Project.Player;
+using Project.Actors.Player;
 using UnityEngine;
 
 namespace Project.Interaction

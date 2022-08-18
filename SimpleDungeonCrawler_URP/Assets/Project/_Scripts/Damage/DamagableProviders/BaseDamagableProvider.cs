@@ -11,11 +11,6 @@ using Project.Stats;
 
 namespace Project.Damage
 {
-	// TODO: Perhaps the DamageDealerProviders should hold the references to the DamageStatType
-	//		 And this should just send out an array of IDamagables in the event(s):
-	//		 This will allow for more customization on damage dealth.
-	//		 IE: Perhaps health and stamina are damaged but we want to do more damage to stamina.
-
     public abstract class BaseDamagableProvider : MonoBehaviour
 	{
 		#region Delegate(s):
