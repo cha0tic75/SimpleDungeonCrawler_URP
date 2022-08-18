@@ -48,7 +48,7 @@ namespace Project.Interaction
 		#region Public API:
 		public override void HandleInteraction(GameObject _interactor)
 		{
-			if (_interactor.TryGetComponent<PlayerController>(out var controller))
+			if (_interactor.TryGetComponent<PlayerMotor>(out var controller))
             {
                 _interactor.transform.position = TeleportLocation;
             }

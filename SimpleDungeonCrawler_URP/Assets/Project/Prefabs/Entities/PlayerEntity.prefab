@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ee01efb495efb43965469b15903e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_inputManager: {fileID: 0}
   m_interactRadius: 0.4
   m_interactLayerMask:
     serializedVersion: 2
@@ -200,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981ac76444a3dc042a8156ed327f53c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_inputManager: {fileID: 0}
   m_animator: {fileID: 7925872999424373734}
   m_healthStat: {fileID: 9160338580381114744}
   m_staminaStat: {fileID: 7738307780714047717}
@@ -215,10 +217,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8353535e582b1bd4eb5cb0c089639dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerinputManager: {fileID: 0}
   m_moveSpeed: 3
-  m_animatorController: {fileID: 3318682904552128907}
-  m_sprintcomponent: {fileID: 4761247565084869867}
   m_sprintSpeedModifier: 1.45
+  m_sprintcomponent: {fileID: 4761247565084869867}
   m_walkingEffect: {fileID: 11400000, guid: cb0eb91cc08b8874dba66115a635818b, type: 2}
 --- !u!114 &4761247565084869867
 MonoBehaviour:
@@ -232,6 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d85c5985e71ec479fe1f89f766fb40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_inputManager: {fileID: 0}
   m_sprintCost: 2.5
   m_statComponent: {fileID: 7738307780714047717}
 --- !u!114 &7738307780714047717
@@ -280,6 +283,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c7ca5eb94d95de248af003a949adee58, type: 2}
   m_regenAmount: 0.25
   m_regenAfterWaitTime: 5
+--- !u!114 &4137838251557878597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928538657056613615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a29216bc83dfa04b865e08dfcc86c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6254630799314164418 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4959164820392593546, guid: 1b2f08014c8510146a61a8433b8eb8c8, type: 3}

@@ -1,6 +1,10 @@
 TODO:
 
 08/17/2022:
+    There may be an issue with the sprint mechanic after switching to the new input system
+
+	 TODO: Add Animations to the Enemy.
+	 
      TODO: There are two new triggers added to the game: Arena Timer and GameCompletedPad
            These should be refactored to use some form of the existing Interation framework.
            Perhaps what ever the Traps are using!

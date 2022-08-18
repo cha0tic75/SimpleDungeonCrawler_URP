@@ -4,7 +4,6 @@
 // Written by Tim McCune <tim.mccune1975@gmail.com>
 // ######################################################################
 
-using System;
 using Project.Stats;
 using UnityEngine;
 
@@ -26,6 +25,7 @@ namespace Project.Player
 		#region MonoBehaviour Callback Method(s):
 		private void OnEnable()
 		{
+			PlayerInputManager.Instance.OnMovementInputEvent += InputManager_OnMovementInputCallback;
 			m_healthStat.OnTakeDamageEvent += Stat_OnTakeDamageCallback;
 			m_staminaStat.OnTakeDamageEvent += Stat_OnTakeDamageCallback;
 		}
@@ -33,20 +33,22 @@ namespace Project.Player
 		{
 			m_healthStat.OnTakeDamageEvent -= Stat_OnTakeDamageCallback;
 			m_staminaStat.OnTakeDamageEvent -= Stat_OnTakeDamageCallback;
+
+			if (PlayerInputManager.Instance == null) { return; }
+			PlayerInputManager.Instance.OnMovementInputEvent -= InputManager_OnMovementInputCallback;
 		}
         #endregion
-
-        #region Public API:
-        public void SetMoveSpeed(float _moveSpeed) => m_animator.SetFloat(s_moveSpeedFloatAnimParam, _moveSpeed);
-		#endregion
 
 		#region Callback Method(s):
         private void Stat_OnTakeDamageCallback(float _value, StatComponent _statComponent)
         {
-            if (_value < 0)
-			{
-				m_animator.SetTrigger(s_takeDamageTriggerAnimParam);
-			}
+            if (_value >= 0) { return; }
+			m_animator.SetTrigger(s_takeDamageTriggerAnimParam);
+        }
+
+        private void InputManager_OnMovementInputCallback(Vector2 _movementInput)
+        {
+            m_animator.SetFloat(s_moveSpeedFloatAnimParam, _movementInput.magnitude);
         }
 		#endregion
 	}

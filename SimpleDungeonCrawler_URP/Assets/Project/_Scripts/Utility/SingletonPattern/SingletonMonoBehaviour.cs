@@ -35,7 +35,8 @@ namespace Project.Utility
 		protected virtual private void OnApplicationQuit()
 		{
 			Instance = null;
-			Destroy(gameObject);
+
+			Destroy(this);
 		}
 		#endregion
 	}

@@ -10,7 +10,7 @@ using Project.Interaction;
 
 namespace Project.Player
 {
-    [RequireComponent(typeof(PlayerController))]
+    [RequireComponent(typeof(PlayerMotor))]
 	public class PlayerInteractor : TransformMonoBehaviour
 	{
 		#region Inspector Assigned Field(s):
@@ -23,13 +23,16 @@ namespace Project.Player
 
 		#region Internal State Field(s):
 		private PlayerInventory m_playerInventory = null;
-		#endregion
+        #endregion
 
-		#region MonoBehaviour Callback Method(s):
-		private void OnEnable() =>
-			GetComponent<PlayerController>().OnItemInteractionEvent += Controller_OnItemInteractionCallback;
-		private void OnDisable() => 
-			GetComponent<PlayerController>().OnItemInteractionEvent -= Controller_OnItemInteractionCallback;
+        #region MonoBehaviour Callback Method(s):
+        private void OnEnable() =>
+			PlayerInputManager.Instance.OnItemInteractionEvent += Controller_OnItemInteractionCallback;
+		private void OnDisable()
+		{
+			if (PlayerInputManager.Instance == null) { return; }
+			PlayerInputManager.Instance.OnItemInteractionEvent -= Controller_OnItemInteractionCallback;
+		}
         
 #if UNITY_EDITOR
 		private void OnDrawGizmos() 
@@ -39,7 +42,6 @@ namespace Project.Player
 			Gizmos.DrawWireSphere(transform.position, m_interactRadius);	
 		}
 #endif
-		
 		#endregion
 
         #region Internally Used Method(s):
