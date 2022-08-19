@@ -1,6 +1,17 @@
 TODO:
 
+Create a new project with a new Repository:
+Move over some of the mechanics and make a commit
+Do this a few times(Each time waiting a bit for the commit)
+At some point make a branch and do the same commit
+
+
 08/17/2022:
+	TODO: Create a simple spash screen
+	TODO: Change the Mobile Controls into squares to stick to the initial concept
+	TODO: Consider creating 3 lives and maintaining state until the 3 lives are up.
+	TODO: Create a simple dash mechanic which will jolt the player ahead several spaces and consumes stamina.
+	TODO: Add the pause state.  It should be the escape key for keyboard, start button on controller, click upper right corner mobile
     TODO: Add another Scene called Credits and on the Win GameState transfer to that. then after time,
           this scene will tell the GameManager to transfer to the MainMenu
 
